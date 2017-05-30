@@ -1,0 +1,41 @@
+# depslib dependency file v1.0
+1494862268 source:f:\desktop\projet connection\connection.c
+	"connection.h"
+	"structure.h"
+
+1494866175 f:\desktop\projet connection\connection.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"structure.h"
+	"verification.h"
+
+1494948298 f:\desktop\projet connection\structure.h
+
+1494951267 source:f:\desktop\projet connection\inscription.c
+	"inscription.h"
+	"structure.h"
+
+1494866175 f:\desktop\projet connection\inscription.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"structure.h"
+	"verification.h"
+
+1494950701 source:f:\desktop\projet connection\main.c
+	<stdio.h>
+	<stdlib.h>
+	"structure.h"
+	"connection.h"
+	"inscription.h"
+
+1494948298 f:\desktop\projet connection\verification.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"structure.h"
+
+1494948498 source:f:\desktop\projet connection\verification.c
+	"verification.h"
+
