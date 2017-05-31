@@ -11,6 +11,6 @@ set(SOURCE_FILES
         verification.c
         verification.h
         main.c
-        structure.h Utilisateurs/clear_screen.h Utilisateurs/clear_sceen.c)
+        structure.h clear_screen.h clear_screen.c)
 
-add_executable(Projet_connection ${SOURCE_FILES} Utilisateurs/clear_screen.h Utilisateurs/clear_sceen.c)
+add_executable(Projet_connection ${SOURCE_FILES} clear_screen.c)

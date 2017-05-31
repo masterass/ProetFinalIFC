@@ -2,13 +2,13 @@
 
 void clear_screen()
 {
-    #if defined (OS_WINDOWS)
-        system ("cls");
-    #else
-        #if defined (OS_LINUX)
-            system ("clear");
-        #endif
-    #endif
+#if defined (OS_WINDOWS)
+    system ("cls");
+#else
+#if defined (OS_LINUX)
+    system ("clear");
+#endif
+#endif
 }
 
 /**void clean_stdin(void)
