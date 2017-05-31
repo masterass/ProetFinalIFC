@@ -1,6 +1,4 @@
 #include "inscription.h"
-#include "structure.h"
-
 
 void inscription(identifiant *IDPersonneConnecte)
 {
@@ -81,7 +79,7 @@ void inscription(identifiant *IDPersonneConnecte)
         printf("Bienvenue");
     }
 
-        system("cls");
+        clear_screen();
     //fflush(stdin);
 }
 

@@ -3,7 +3,8 @@
 int verification(char chaineVerif[])
 {
     int i;
-    strlwr(chaineVerif);
+    //strlwr(chaineVerif);
+    mettreMajuscule(chaineVerif);
 
     if(strcmp(chaineVerif, "") == 0)
     {
@@ -87,4 +88,10 @@ int verificationInscription(char chemin[])
 
         return 1;
 
+}
+
+void mettreMajuscule(char chaine[])
+{
+    for(int i=0;i<strlen(chaine);i++)
+        chaine[i]=tolower(chaine[i]);
 }

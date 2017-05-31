@@ -4,6 +4,7 @@
 #include "structure.h"
 #include "connection.h"
 #include "inscription.h"
+#include "Utilisateurs/clear_screen.h"
 
 #define MAX 30
 #define calibrage "     "
@@ -41,7 +42,7 @@ int main()
             printf("4) Quitter\n");
             printf("\nChoix : ");
             scanf("%i",&choix);
-            system("cls");
+            clear_screen();
         }
 
         // vider le buffer
