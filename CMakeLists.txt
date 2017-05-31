@@ -8,7 +8,9 @@ set(SOURCE_FILES
         connection.h
         inscription.c
         inscription.h
+        verification.c
+        verification.h
         main.c
-        structure.h)
+        structure.h clear_screen.h clear_screen.c)
 
-add_executable(Projet_connection ${SOURCE_FILES})
+add_executable(Projet_connection ${SOURCE_FILES} clear_screen.c)

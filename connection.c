@@ -35,7 +35,7 @@ void connection(identifiant *IDPersonneConnecte)
                 printf("\n\nConnection reussie !!");
             else
             {
-                system("cls");
+                clear_screen();
                 printf("Connection a echouee\n");
                 strcpy(IDPersonneConnecte->prenom,"");
                 strcpy(IDPersonneConnecte->nom, "");
