@@ -4,6 +4,7 @@
 #include <ctype.h>
 
 #include "structure.h"
+#include "clear_screen.h"
 
 int verification(char chaineVerif[]);
 int verificationMDP(char chaineVerif[]);
