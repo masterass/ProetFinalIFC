@@ -4,7 +4,7 @@
 #include "structure.h"
 #include "connection.h"
 #include "inscription.h"
-#include "Utilisateurs/clear_screen.h"
+#include "clear_screen.h"
 
 #define MAX 30
 #define calibrage "     "
@@ -21,7 +21,7 @@ int main()
         //bouble de vérification avec message d'erreur
         while(choix < 1 || choix > 4)
         {
-            fflush(stdin);
+            clean_stdin();
             printf("\n");
             printf("%s 000     00  000000000000000000000000000000000000000000000000000000\n",calibrage);
             printf("%s 000     00      00     0000000000000000000000000000000000000000000\n",calibrage);
@@ -46,7 +46,7 @@ int main()
         }
 
         // vider le buffer
-        fflush(stdin);
+        clean_stdin();
 
         switch (choix)
         {

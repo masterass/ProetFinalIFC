@@ -11,14 +11,14 @@ void inscription(identifiant *IDPersonneConnecte)
 
     do // prenom
     {
-        fflush(stdin);
+        clean_stdin();
         printf("Prenom : ");
         gets(IDPersonneConnecte->prenom);
     }while(verification(IDPersonneConnecte->prenom) == 1);
 
     do //nom
     {
-        fflush(stdin);
+        clean_stdin();
         printf("Nom : ");
         gets(IDPersonneConnecte->nom);
     }while(verification(IDPersonneConnecte->nom) == 1);
@@ -26,14 +26,14 @@ void inscription(identifiant *IDPersonneConnecte)
 
     do //age
     {
-        fflush(stdin);
+        clean_stdin();
         printf("\nEntrer votre age : ");
         scanf("%i", &IDPersonneConnecte->age);
     }while(verificationAge(IDPersonneConnecte->age) == 1);
 
     do//mdp
     {
-        fflush(stdin);
+        clean_stdin();
         printf("Mot de passe : (8 caracteres minimums) ");
         gets(IDPersonneConnecte->MDP);
     }while(verificationMDP(IDPersonneConnecte->MDP) == 1);
@@ -44,7 +44,7 @@ void inscription(identifiant *IDPersonneConnecte)
         printf("\nErreur de confirmation mot de passe\n");
          do
         {
-            fflush(stdin);
+            clean_stdin();
             printf("Mot de passe : (8 caractères minimums) ");
             gets(IDPersonneConnecte->MDP);
         }while(verificationMDP(IDPersonneConnecte->MDP) == 1);
@@ -54,7 +54,7 @@ void inscription(identifiant *IDPersonneConnecte)
 
    do
    {
-        fflush(stdin);
+        clean_stdin();
         printf("Pseudo : (3 caracteres minimums) ");
         gets(IDPersonneConnecte->pseudo);
         strcat(chemin, IDPersonneConnecte->pseudo );
@@ -80,6 +80,6 @@ void inscription(identifiant *IDPersonneConnecte)
     }
 
         clear_screen();
-    //fflush(stdin);
+        clean_stdin();
 }
 
