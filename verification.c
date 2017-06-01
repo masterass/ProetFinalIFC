@@ -92,6 +92,7 @@ int verificationInscription(char chemin[])
 
 void mettreMajuscule(char chaine[])
 {
-    for(int i=0;i<strlen(chaine);i++)
+    int i;
+    for(i=0;i<strlen(chaine);i++)
         chaine[i]=tolower(chaine[i]);
 }

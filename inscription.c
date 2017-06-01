@@ -24,12 +24,18 @@ void inscription(identifiant *IDPersonneConnecte)
     }while(verification(IDPersonneConnecte->nom) == 1);
 
 
-    do //age
-    {
+   // do //age
+   // {
         clean_stdin();
         printf("\nEntrer votre age : ");
         scanf("%i", &IDPersonneConnecte->age);
-    }while(verificationAge(IDPersonneConnecte->age) == 1);
+    while(verificationAge(IDPersonneConnecte->age) == 1);
+    {
+        printf("Vous Ãªtes trop jeune ! (ou valeur incorrecte) ");
+        clean_stdin();
+        printf("\nEntrer votre age : ");
+        scanf("%i", &IDPersonneConnecte->age);
+    }
 
     do//mdp
     {
@@ -45,7 +51,7 @@ void inscription(identifiant *IDPersonneConnecte)
          do
         {
             clean_stdin();
-            printf("Mot de passe : (8 caractères minimums) ");
+            printf("Mot de passe : (8 caractï¿½res minimums) ");
             gets(IDPersonneConnecte->MDP);
         }while(verificationMDP(IDPersonneConnecte->MDP) == 1);
         printf("Confirmer votre mot de passe : ");
