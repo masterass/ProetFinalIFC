@@ -7,4 +7,4 @@
 #include "clear_screen.h"
 
 void inscription(identifiant *IDPersonneConnecte);
-
+void clean_stdin();
