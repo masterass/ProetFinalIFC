@@ -4,7 +4,7 @@
 #include "structure.h"
 #include "connection.h"
 #include "inscription.h"
-#include "Utilisateurs/clear_screen.h"
+#include "clear_screen.h"
 
 #define MAX 30
 #define calibrage "     "
