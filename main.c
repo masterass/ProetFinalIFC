@@ -4,6 +4,7 @@
 #include "structure.h"
 #include "connection.h"
 #include "inscription.h"
+#include "catalogue.h"
 #include "clear_screen.h"
 
 #define MAX 30
@@ -50,7 +51,7 @@ int main()
 
         switch (choix)
         {
-            case 1 : ;
+            case 1 : afficherMenuCatalogue(&IDPersonneConnecte);
                 break;
             case 2 : connection(&IDPersonneConnecte);
                 break;
