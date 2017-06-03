@@ -47,7 +47,7 @@ int main()
         }
 
         // vider le buffer
-        clean_stdin();
+        fflush(stdin);
 
         switch (choix)
         {
