@@ -4,29 +4,24 @@
 void connection(identifiant *IDPersonneConnecte)
 {
     // déclaration variables
-    if(strcmp((*IDPersonneConnecte).nom, "") == 0)
-    {
-
+    /*if(strcmp((*IDPersonneConnecte).nom, "") == 0)
+    {*/
         char chemin[50]="utilisateurs/";
         FILE* fichier = NULL;
         while(fichier == NULL)
         {
             // aquisition
-            while (strcmp(IDPersonneConnecte->prenom,"") == 0 || strcmp(IDPersonneConnecte->nom, "") == 0 || strcmp(IDPersonneConnecte->MDP, "") == 0)
+            while (strcmp(IDPersonneConnecte->pseudo,"") == 0|| strcmp(IDPersonneConnecte->MDP, "") == 0)
             {
+                clean_stdin();
                 printf("Veuilliez vous connecter\n\n");
-                printf("Prenom : ");
-                gets(IDPersonneConnecte->prenom);
-                printf("Nom : ");
-                gets(IDPersonneConnecte->nom);
+                printf("Pseudo: ");
+                gets(IDPersonneConnecte->pseudo);
                 printf("Mot de passe : ");
                 gets(IDPersonneConnecte->MDP);
             }
-
             // concaténation afin d'obtenir le bon chemin relatif
-            strcat(chemin,IDPersonneConnecte->prenom);
-            strcat(chemin, "_");
-            strcat(chemin,IDPersonneConnecte->nom);
+            strcat(chemin,IDPersonneConnecte->pseudo);
 
             //verification existence utilisateur/fichier
             fichier = fopen(chemin, "r");
@@ -37,16 +32,15 @@ void connection(identifiant *IDPersonneConnecte)
             {
                 clear_screen();
                 printf("Connection a echouee\n");
-                strcpy(IDPersonneConnecte->prenom,"");
-                strcpy(IDPersonneConnecte->nom, "");
+                strcpy(IDPersonneConnecte->pseudo,"");
                 strcpy(IDPersonneConnecte->MDP, "");
             }
         }
         fclose(fichier);
-    }
-    else
+    //3}
+    /*else
     {
         printf("Vous etes deja connecte");
-    }
+    }*/
 }
 

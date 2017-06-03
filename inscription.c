@@ -11,38 +11,41 @@ void inscription(identifiant *IDPersonneConnecte)
 
     do // prenom
     {
-        clean_stdin();
         printf("Prenom : ");
         gets(IDPersonneConnecte->prenom);
     }while(verification(IDPersonneConnecte->prenom) == 1);
 
     do //nom
     {
-        clean_stdin();
         printf("Nom : ");
         gets(IDPersonneConnecte->nom);
     }while(verification(IDPersonneConnecte->nom) == 1);
 
-
-   // do //age
-   // {
-        clean_stdin();
-        printf("\nEntrer votre age : ");
-        scanf("%i", &IDPersonneConnecte->age);
+    do
+    {
+        printf("Pseudo : (3 caracteres minimums) ");
+        gets(IDPersonneConnecte->pseudo);
+        strcat(chemin, IDPersonneConnecte->pseudo );
+        if (verificationInscription(chemin)== 1)
+            printf("Pseudo deja utilise !\n");
+    }while(verificationPseudo(IDPersonneConnecte->pseudo)==1 || verificationInscription(chemin) == 1);
+    
+    // age
+    printf("Entrer votre age : ");
+    scanf("%i", &IDPersonneConnecte->age);
     while(verificationAge(IDPersonneConnecte->age) == 1);
     {
         printf("Vous êtes trop jeune ! (ou valeur incorrecte) ");
-        clean_stdin();
         printf("\nEntrer votre age : ");
         scanf("%i", &IDPersonneConnecte->age);
     }
 
     do//mdp
     {
-        clean_stdin();
         printf("Mot de passe : (8 caracteres minimums) ");
         gets(IDPersonneConnecte->MDP);
     }while(verificationMDP(IDPersonneConnecte->MDP) == 1);
+
     printf("Confirmer votre mot de passe : ");
     gets(confMDP);
     while(strcmp(IDPersonneConnecte->MDP, confMDP) != 0)
@@ -50,7 +53,6 @@ void inscription(identifiant *IDPersonneConnecte)
         printf("\nErreur de confirmation mot de passe\n");
          do
         {
-            clean_stdin();
             printf("Mot de passe : (8 caract�res minimums) ");
             gets(IDPersonneConnecte->MDP);
         }while(verificationMDP(IDPersonneConnecte->MDP) == 1);
@@ -58,21 +60,12 @@ void inscription(identifiant *IDPersonneConnecte)
         gets(confMDP);
     }
 
-   do
-   {
-        clean_stdin();
-        printf("Pseudo : (3 caracteres minimums) ");
-        gets(IDPersonneConnecte->pseudo);
-        strcat(chemin, IDPersonneConnecte->pseudo );
-        if (verificationInscription(chemin)== 1)
-            printf("Pseudo deja utilise \n");
-   }while(verificationPseudo(IDPersonneConnecte->pseudo)==1 || verificationInscription(chemin) == 1);
-
     printf("Voulez vous confirmer 1: oui 0: non ? \n");
     scanf("%d", &i );
 
     if (i == 1)
     {
+        strcat(chemin,IDPersonneConnecte->pseudo);
         FILE* fichier = NULL;
         fichier = fopen(chemin, "w");
         fputs(IDPersonneConnecte->prenom , fichier);
@@ -81,7 +74,7 @@ void inscription(identifiant *IDPersonneConnecte)
         fputs("\n", fichier);
         fprintf(fichier,"%i", IDPersonneConnecte->age);
         fclose(fichier);
-
+       //clear_screen();
         printf("Bienvenue");
     }
 

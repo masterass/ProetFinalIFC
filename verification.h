@@ -11,4 +11,4 @@ int verificationMDP(char chaineVerif[]);
 int verificationPseudo(char chaineVerif[]);
 int verificationAge(int age);
 int verificationInscription(char chaineVerif[]);
-void mettreMajuscule(char chaine[]);
+void mettreMinuscule(char chaine[]);

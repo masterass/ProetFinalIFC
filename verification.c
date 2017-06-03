@@ -4,11 +4,11 @@ int verification(char chaineVerif[])
 {
     int i;
     //strlwr(chaineVerif);
-    mettreMajuscule(chaineVerif);
+    mettreMinuscule(chaineVerif);
 
     if(strcmp(chaineVerif, "") == 0)
     {
-        printf("Veuillez entrer des caractères");
+        printf("Veuillez entrer des caractères ! \n");
         return 1;
     }
     else
@@ -17,7 +17,7 @@ int verification(char chaineVerif[])
         {
             if(chaineVerif[i] < 'a' || chaineVerif[i]> 'z')
             {
-                printf("Erreur le champ saisie comporte des caractères non autorise\n");
+                printf("/!\Erreur le champ saisie comporte des caractères non autorise\n");
                 return 1;
             }
         }
@@ -71,10 +71,18 @@ int verificationPseudo(char chaineVerif[])
 }
 int verificationAge(int age)
 {
-    if(age < 16)
+    if ((age < 0) || (age > 120))
+    {
         return 1;
+    }
     else
-        return 0;
+    {
+        if(age < 16)
+            return 1;
+        else
+            return 0;
+    }
+
 }
 
 int verificationInscription(char chemin[])
@@ -90,7 +98,7 @@ int verificationInscription(char chemin[])
 
 }
 
-void mettreMajuscule(char chaine[])
+void mettreMinuscule(char chaine[])
 {
     int i;
     for(i=0;i<strlen(chaine);i++)
