@@ -71,14 +71,18 @@ int verificationPseudo(char chaineVerif[])
 }
 int verificationAge(int age)
 {
-    if ((age < 0) || (age > 120))
+    if (age < 0 || age > 120)
     {
+        printf("Valeur incorrecte !");
         return 1;
     }
     else
     {
         if(age < 16)
+        {
+            printf("L'age recommande pour notre site est de minimum 16 ans ! \n");
             return 1;
+        }
         else
             return 0;
     }

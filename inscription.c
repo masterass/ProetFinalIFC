@@ -4,8 +4,9 @@ void inscription(identifiant *IDPersonneConnecte)
 {
     //identifiant personne1;
     int i;
+    FILE* fichier = NULL;
     char chemin[50] = "utilisateurs/", confMDP[MAX];
-
+    clean_stdin();
     // aquisition
     printf("\t\t Veuilliez vous inscrire\n\n");
 
@@ -17,32 +18,31 @@ void inscription(identifiant *IDPersonneConnecte)
 
     do //nom
     {
-        printf("Nom : ");
+        printf("\nNom : ");
         gets(IDPersonneConnecte->nom);
     }while(verification(IDPersonneConnecte->nom) == 1);
 
     do
     {
-        printf("Pseudo : (3 caracteres minimums) ");
+        printf("\nPseudo : (3 caracteres minimums) ");
         gets(IDPersonneConnecte->pseudo);
         strcat(chemin, IDPersonneConnecte->pseudo );
         if (verificationInscription(chemin)== 1)
             printf("Pseudo deja utilise !\n");
     }while(verificationPseudo(IDPersonneConnecte->pseudo)==1 || verificationInscription(chemin) == 1);
-    
+
     // age
-    printf("Entrer votre age : ");
+    printf("\nEntrer votre age : ");
     scanf("%i", &IDPersonneConnecte->age);
-    while(verificationAge(IDPersonneConnecte->age) == 1);
+    while(verificationAge(IDPersonneConnecte->age) == 1)
     {
-        printf("Vous êtes trop jeune ! (ou valeur incorrecte) ");
         printf("\nEntrer votre age : ");
         scanf("%i", &IDPersonneConnecte->age);
     }
-
+    clean_stdin();
     do//mdp
     {
-        printf("Mot de passe : (8 caracteres minimums) ");
+        printf("\nMot de passe : (8 caracteres minimums) ");
         gets(IDPersonneConnecte->MDP);
     }while(verificationMDP(IDPersonneConnecte->MDP) == 1);
 
@@ -62,16 +62,16 @@ void inscription(identifiant *IDPersonneConnecte)
 
     printf("Voulez vous confirmer 1: oui 0: non ? \n");
     scanf("%d", &i );
+    strcat(chemin,IDPersonneConnecte->pseudo);
 
     if (i == 1)
     {
-        strcat(chemin,IDPersonneConnecte->pseudo);
-        FILE* fichier = NULL;
         fichier = fopen(chemin, "w");
         fputs(IDPersonneConnecte->prenom , fichier);
         fputs("\n", fichier);
         fputs(IDPersonneConnecte->nom, fichier);
         fputs("\n", fichier);
+        fputs(IDPersonneConnecte->MDP, fichier);
         fprintf(fichier,"%i", IDPersonneConnecte->age);
         fclose(fichier);
        //clear_screen();
