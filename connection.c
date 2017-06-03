@@ -1,47 +1,54 @@
 #include "connection.h"
-#include "structure.h"
 
 void connection(identifiant *IDPersonneConnecte)
 {
-    // déclaration variables
-    /*if(strcmp((*IDPersonneConnecte).nom, "") == 0)
-    {*/
-        strcpy(IDPersonneConnecte->pseudo,"");
-        strcpy(IDPersonneConnecte->MDP, "");
-        char chemin[50]="utilisateurs/";
-        FILE* fichier = NULL;
-        while(fichier == NULL)
+    strcpy(IDPersonneConnecte->pseudo,"");
+    strcpy(IDPersonneConnecte->MDP, "");
+    char chemin[50]="utilisateurs/";
+    FILE* fichier = NULL;
+
+        do
         {
-            // aquisition
-            while (strcmp(IDPersonneConnecte->pseudo,"") == 0|| strcmp(IDPersonneConnecte->MDP, "") == 0)
+            do
             {
+                clean_stdin();
                 printf("Veuilliez vous connecter\n\n");
-                printf("Pseudo: ");
-                gets(IDPersonneConnecte->pseudo);
+                do
+                {
+                    printf("\nPseudo : ");
+                    gets(IDPersonneConnecte->pseudo);
+                }while(verificationPseudo(IDPersonneConnecte->pseudo)==1);
+
                 printf("Mot de passe : ");
                 gets(IDPersonneConnecte->MDP);
-            }
+            }while (strcmp(IDPersonneConnecte->pseudo,"") == 0|| strcmp(IDPersonneConnecte->MDP, "") == 0);
+
             // concaténation afin d'obtenir le bon chemin relatif
             strcat(chemin,IDPersonneConnecte->pseudo);
+
+
+            recherchemdp(IDPersonneConnecte->pseudo, chemin);
 
             //verification existence utilisateur/fichier
             fichier = fopen(chemin, "r");
 
             if(fichier != NULL)
-                printf("\n\nConnection reussie !!");
+            {
+                printf("\nConnection reussie !!");
+                //clear_screen();
+            }
             else
             {
-                clear_screen();
+                //clear_screen();
                 printf("Connection a echouee\n");
+                clean_stdin();
                 strcpy(IDPersonneConnecte->pseudo,"");
                 strcpy(IDPersonneConnecte->MDP, "");
             }
-        }
+        } while(fichier == NULL);
         fclose(fichier);
-    //3}
-    /*else
-    {
-        printf("Vous etes deja connecte");
-    }*/
+
+
+
 }
 

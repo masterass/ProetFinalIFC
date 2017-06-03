@@ -1,9 +1,8 @@
 #include "inscription.h"
-#include "structure.h"
+
 
 void inscription(identifiant *IDPersonneConnecte)
 {
-    //identifiant personne1;
     int i;
     FILE* fichier = NULL;
     char chemin[50] = "utilisateurs/", confMDP[MAX];
@@ -23,32 +22,22 @@ void inscription(identifiant *IDPersonneConnecte)
         gets(IDPersonneConnecte->nom);
     }while(verification(IDPersonneConnecte->nom) == 1);
 
-    do
+    do//pseudo
     {
+        strcpy(chemin, "utilisateurs/"); // obiger car si on se tromper une fois le chemin prend le nom du pseudo qui est deja utiliser et celui qui l'est pas
         printf("\nPseudo : (3 caracteres minimums) ");
         gets(IDPersonneConnecte->pseudo);
         strcat(chemin, IDPersonneConnecte->pseudo );
-        while (verificationInscription(chemin)== 1)
-        {
-            strcpy(chemin, "utilisateurs/"); // obiger car si on se tromper une fois le chemin prend le nom du pseudo qui est deja utiliser et celui qui l'est pas 
-            printf("Pseudo deja utilise !\n");
-            printf("\nPseudo : (3 caracteres minimums) ");
-            gets(IDPersonneConnecte->pseudo);
-            strcat(chemin, IDPersonneConnecte->pseudo );
-        }
 
     }while(verificationPseudo(IDPersonneConnecte->pseudo)==1 || verificationInscription(chemin) == 1);
 
-    // age
-    printf("\nEntrer votre age : ");
-    scanf("%i", &IDPersonneConnecte->age);
-    while(verificationAge(IDPersonneConnecte->age) == 1)
+    do// age
     {
-        clean_stdin();
         printf("\nEntrer votre age : ");
         scanf("%i", &IDPersonneConnecte->age);
-    }
+    }while(verificationAge(IDPersonneConnecte->age) == 1);
     clean_stdin();
+
     do//mdp
     {
         printf("\nMot de passe : (8 caracteres minimums) ");
@@ -57,7 +46,7 @@ void inscription(identifiant *IDPersonneConnecte)
 
     printf("Confirmer votre mot de passe : ");
     gets(confMDP);
-    while(strcmp(IDPersonneConnecte->MDP, confMDP) != 0)
+    while(strcmp(IDPersonneConnecte->MDP, confMDP) != 0) //verif confirmation mot de passe correcte
     {
         printf("\nErreur de confirmation mot de passe\n");
          do
@@ -85,6 +74,7 @@ void inscription(identifiant *IDPersonneConnecte)
         fprintf(fichier,"%i", IDPersonneConnecte->age);
         fclose(fichier);
         printf("Bienvenue");
+
     }
 
         clear_screen();

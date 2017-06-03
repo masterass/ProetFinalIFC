@@ -53,7 +53,7 @@ int verificationPseudo(char chaineVerif[])
 
     if(strlen(chaineVerif) < 3)
     {
-        printf("Veuillez rentrer un pseudo plus long \n");
+        printf("Veuillez rentrer un pseudo correct \n");
         return 1;
     }
     else
@@ -69,7 +69,7 @@ int verificationPseudo(char chaineVerif[])
         return 0;
     }
 }
-int verificationAge(int age)
+int verificationAge(int age) // si l'age est cohérent ou réglementaire
 {
     if (age < 0 || age > 120)
     {
@@ -88,16 +88,22 @@ int verificationAge(int age)
 
 }
 
-int verificationInscription(char chemin[])
+int verificationInscription(char chemin[]) // si le pseudo est disponible ou non
 {
     FILE *fichier;
     fichier = fopen(chemin, "r");
 
     if (fichier == NULL)
+    {
         return 0;
+    }
     else
-
+    {
+        printf(" Desole, ce pseudo deja utilise !");
         return 1;
+    }
+
+
 
 }
 
@@ -107,3 +113,4 @@ void mettreMinuscule(char chaine[])
     for(i=0;i<strlen(chaine);i++)
         chaine[i]=tolower(chaine[i]);
 }
+
