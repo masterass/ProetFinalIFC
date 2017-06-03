@@ -9,6 +9,6 @@
 #include "structure.h"
 #include "clear_screen.h"
 
-void recherchemdp(char chaineVerif[], char chemin[]);
+int recherchemdp(char chaineVerif[], char chemin[]);
 
 

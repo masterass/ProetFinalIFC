@@ -19,34 +19,28 @@ void connection(identifiant *IDPersonneConnecte)
                     gets(IDPersonneConnecte->pseudo);
                 }while(verificationPseudo(IDPersonneConnecte->pseudo)==1);
 
-                printf("Mot de passe : ");
+                printf("\nMot de passe : ");
                 gets(IDPersonneConnecte->MDP);
             }while (strcmp(IDPersonneConnecte->pseudo,"") == 0|| strcmp(IDPersonneConnecte->MDP, "") == 0);
 
             // concaténation afin d'obtenir le bon chemin relatif
             strcat(chemin,IDPersonneConnecte->pseudo);
 
-
-            recherchemdp(IDPersonneConnecte->pseudo, chemin);
-
             //verification existence utilisateur/fichier
-            fichier = fopen(chemin, "r");
 
-            if(fichier != NULL)
+            if((recherchemdp(IDPersonneConnecte->MDP, chemin))==1)
             {
                 printf("\nConnection reussie !!");
                 //clear_screen();
             }
             else
             {
-                //clear_screen();
-                printf("Connection a echouee\n");
-                clean_stdin();
-                strcpy(IDPersonneConnecte->pseudo,"");
-                strcpy(IDPersonneConnecte->MDP, "");
+                fichier = NULL;
+                printf("\nConnection a echouee\n");
+                //clean_stdin();
             }
         } while(fichier == NULL);
-        fclose(fichier);
+        //fclose(fichier);
 
 
 

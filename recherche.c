@@ -3,25 +3,27 @@
 //
 #include "recherche.h"
 
-void recherchemdp(char chaineVerif[], char chemin[])
+int recherchemdp(char chaineVerif[], char chemin[])
 {
     char test[MAX], *recherche = NULL;
-    char *verif;
+    char verif[] = "&";
     FILE* fichier = NULL;
 
 
     fichier = fopen(chemin, "r");
 
-
+    if (fichier != NULL)
+    {
         while(fgets(test,MAX,fichier)!= 0)
         {
             recherche = strchr(test,'&');
-            verif = strcat("&", chaineVerif);
-            printf("%s", verif);
-
-            printf("%s", recherche);
-
         }
+        strcat(verif, chaineVerif);
+
+        if (strcmp(recherche, verif)==0)
+            return 1;
+
+    }
 
     fclose(fichier);
 
