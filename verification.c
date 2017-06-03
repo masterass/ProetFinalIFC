@@ -76,14 +76,13 @@ int verificationAge(int age)
         printf("Valeur incorrecte !");
         return 1;
     }
-    else
+    else if (age <16 )
     {
-        if(age < 16)
-        {
             printf("L'age recommande pour notre site est de minimum 16 ans ! \n");
             return 1;
-        }
-        else
+    }
+    else
+    {
             return 0;
     }
 

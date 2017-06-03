@@ -1,4 +1,5 @@
 #include "inscription.h"
+#include "structure.h"
 
 void inscription(identifiant *IDPersonneConnecte)
 {
@@ -27,8 +28,15 @@ void inscription(identifiant *IDPersonneConnecte)
         printf("\nPseudo : (3 caracteres minimums) ");
         gets(IDPersonneConnecte->pseudo);
         strcat(chemin, IDPersonneConnecte->pseudo );
-        if (verificationInscription(chemin)== 1)
+        while (verificationInscription(chemin)== 1)
+        {
+            strcpy(chemin, "utilisateurs/"); // obiger car si on se tromper une fois le chemin prend le nom du pseudo qui est deja utiliser et celui qui l'est pas 
             printf("Pseudo deja utilise !\n");
+            printf("\nPseudo : (3 caracteres minimums) ");
+            gets(IDPersonneConnecte->pseudo);
+            strcat(chemin, IDPersonneConnecte->pseudo );
+        }
+
     }while(verificationPseudo(IDPersonneConnecte->pseudo)==1 || verificationInscription(chemin) == 1);
 
     // age
@@ -36,6 +44,7 @@ void inscription(identifiant *IDPersonneConnecte)
     scanf("%i", &IDPersonneConnecte->age);
     while(verificationAge(IDPersonneConnecte->age) == 1)
     {
+        clean_stdin();
         printf("\nEntrer votre age : ");
         scanf("%i", &IDPersonneConnecte->age);
     }
@@ -62,7 +71,7 @@ void inscription(identifiant *IDPersonneConnecte)
 
     printf("Voulez vous confirmer 1: oui 0: non ? \n");
     scanf("%d", &i );
-    strcat(chemin,IDPersonneConnecte->pseudo);
+
 
     if (i == 1)
     {
@@ -71,10 +80,10 @@ void inscription(identifiant *IDPersonneConnecte)
         fputs("\n", fichier);
         fputs(IDPersonneConnecte->nom, fichier);
         fputs("\n", fichier);
-        fputs(IDPersonneConnecte->MDP, fichier);
+        fprintf(fichier, "&%s", IDPersonneConnecte->MDP);
+        fputs("\n", fichier);
         fprintf(fichier,"%i", IDPersonneConnecte->age);
         fclose(fichier);
-       //clear_screen();
         printf("Bienvenue");
     }
 

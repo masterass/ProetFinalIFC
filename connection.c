@@ -6,6 +6,8 @@ void connection(identifiant *IDPersonneConnecte)
     // déclaration variables
     /*if(strcmp((*IDPersonneConnecte).nom, "") == 0)
     {*/
+        strcpy(IDPersonneConnecte->pseudo,"");
+        strcpy(IDPersonneConnecte->MDP, "");
         char chemin[50]="utilisateurs/";
         FILE* fichier = NULL;
         while(fichier == NULL)
@@ -13,7 +15,6 @@ void connection(identifiant *IDPersonneConnecte)
             // aquisition
             while (strcmp(IDPersonneConnecte->pseudo,"") == 0|| strcmp(IDPersonneConnecte->MDP, "") == 0)
             {
-                clean_stdin();
                 printf("Veuilliez vous connecter\n\n");
                 printf("Pseudo: ");
                 gets(IDPersonneConnecte->pseudo);
