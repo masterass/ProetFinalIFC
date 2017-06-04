@@ -12,4 +12,11 @@ typedef struct identifiant
     char pseudo[MAX];
 } identifiant;
 
+typedef struct produit
+{
+    int prix;
+    char nom[MAX];
+    char reference[MAX];
+} produit;
+
 #endif

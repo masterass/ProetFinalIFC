@@ -4,6 +4,7 @@
 #include "structure.h"
 #include "connection.h"
 #include "inscription.h"
+#include "catalogue.h"
 #include "clear_screen.h"
 
 #define MAX 30
@@ -11,7 +12,7 @@
 
 int main()
 {
-    // déclaration variables
+    // dÃ©claration variables
     int choix;
     identifiant IDPersonneConnecte = {"","",""};
     do
@@ -44,9 +45,11 @@ int main()
             clear_screen();
         }
 
+        // vider le buffer
+        fflush(stdin);
         switch (choix)
         {
-            case 1 : ;
+            case 1 : afficherMenuCatalogue(&IDPersonneConnecte);
                 break;
             case 2 : connection(&IDPersonneConnecte);
                 break;

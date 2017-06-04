@@ -13,6 +13,6 @@ set(SOURCE_FILES
         recherche.c
         recherche.h
         main.c
-        structure.h clear_screen.h clear_screen.c recherche.c recherche.h)
+        structure.h clear_screen.h clear_screen.c catalogue.h catalogue.c "tri.c" "tri.h" recherche.c recherche.h)
 
-add_executable(Projet_connection ${SOURCE_FILES} clear_screen.c)
+add_executable(Projet_connection ${SOURCE_FILES} clear_screen.c catalogue.h catalogue.c "tri.c" "tri.h" recherche.c recherche.h)
