@@ -5,13 +5,12 @@ void connection(identifiant *IDPersonneConnecte)
     strcpy(IDPersonneConnecte->pseudo,"");
     strcpy(IDPersonneConnecte->MDP, "");
     int i; // verification à modifier
-    char verif[] = "&";
+    char verif[MAX]="";
     char chemin[50]="utilisateurs/";
 
     do
     {
         strcpy(chemin, "utilisateurs/");// obiger car si on se tromper une fois le chemin prend le nom du pseudo qui est deja utiliser et celui qui l'est pas
-        strcpy(verif,"&");
         do
         {
             printf("\nVeuilliez vous connecter\n\n");
