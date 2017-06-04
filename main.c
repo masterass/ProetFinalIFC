@@ -12,17 +12,15 @@
 
 int main()
 {
-    // déclaration variables
+    // dÃ©claration variables
     int choix;
     identifiant IDPersonneConnecte = {"","",""};
-
     do
     {
         choix = 0;
-        //bouble de vérification avec message d'erreur
+
         while(choix < 1 || choix > 4)
         {
-            clean_stdin();
             printf("\n");
             printf("%s 000     00  000000000000000000000000000000000000000000000000000000\n",calibrage);
             printf("%s 000     00      00     0000000000000000000000000000000000000000000\n",calibrage);
@@ -43,12 +41,12 @@ int main()
             printf("4) Quitter\n");
             printf("\nChoix : ");
             scanf("%i",&choix);
+            clean_stdin();
             clear_screen();
         }
 
         // vider le buffer
         fflush(stdin);
-
         switch (choix)
         {
             case 1 : afficherMenuCatalogue(&IDPersonneConnecte);
@@ -63,5 +61,6 @@ int main()
         }
 
     }while(choix != 4);
+
     return 0;
 }

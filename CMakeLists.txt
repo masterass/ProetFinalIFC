@@ -10,7 +10,9 @@ set(SOURCE_FILES
         inscription.h
         verification.c
         verification.h
+        recherche.c
+        recherche.h
         main.c
-        structure.h clear_screen.h clear_screen.c catalogue.h catalogue.c "tri.c" "tri.h")
+        structure.h clear_screen.h clear_screen.c catalogue.h catalogue.c "tri.c" "tri.h" recherche.c recherche.h)
 
-add_executable(Projet_connection ${SOURCE_FILES} clear_screen.c catalogue.h catalogue.c "tri.c" "tri.h")
+add_executable(Projet_connection ${SOURCE_FILES} clear_screen.c catalogue.h catalogue.c "tri.c" "tri.h" recherche.c recherche.h)
