@@ -40,6 +40,7 @@ int main()
             printf("4) Quitter\n");
             printf("\nChoix : ");
             scanf("%i",&choix);
+            clean_stdin();
             clear_screen();
         }
 
