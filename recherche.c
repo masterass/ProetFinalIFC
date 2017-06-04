@@ -10,7 +10,7 @@ int recherchemdp(char chaineVerif[], char chemin[])
 
     if (fichier != NULL)
     {
-        while(fgets(ligne,30,fichier)!= NULL)
+        while(fgets(ligne,MAX,fichier)!= NULL)
         {
             recherche[0] = ligne[0];
             if (recherche != NULL && recherche[0] == '&')
