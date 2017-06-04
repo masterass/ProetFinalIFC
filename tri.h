@@ -5,6 +5,7 @@
 #ifndef PROJET_CONNECTION_TRI_H
 #define PROJET_CONNECTION_TRI_H
 
-void trieBulle();
+void triPrix(produit tableauProduit[]);
+void triAlphabetique(produit tableauPoduit[]);
 
 #endif //PROJET_CONNECTION_TRI_H

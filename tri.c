@@ -1,6 +1,6 @@
 #include "tri.h"
 
-void triBulle(produitsATrier[])
+void triPrix(produit tableauProduit[])
 {
     int passage = 0;
     int permutation = 1;
@@ -11,13 +11,18 @@ void triBulle(produitsATrier[])
         permutation = 0;
         passage++;
         for (en_cours = 0; en_cours < 20 - passage; en_cours++) {
-            if (produitATrier[en_cours] > produitATrier[en_cours + 1]) {
+            if (tableauProduit[en_cours].prix > tableauProduit[en_cours + 1].prix) {
                 permutation = 1;
                 // on echange les deux elements
-                int temp = produitATrier[en_cours];
-                produitATrier[en_cours] = produitATrier[en_cours + 1];
-                produitATrier[en_cours + 1] = temp;
+                int temp = tableauProduit[en_cours].prix;
+                tableauProduit[en_cours].prix = tableauProduit[en_cours + 1].prix;
+                tableauProduit[en_cours + 1].prix = temp;
             }
         }
     }
+}
+
+void triAlphabetique(produit tableauPoduit[])
+{
+
 }
