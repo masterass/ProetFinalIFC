@@ -16,7 +16,7 @@ void clear_screen()
 
 void clean_stdin(void)
 {
-    int c;
+    int c; // beau gosse
     do {
         c = getchar();
     } while (c != '\n' && c != EOF);

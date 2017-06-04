@@ -4,11 +4,11 @@ int verification(char chaineVerif[])
 {
     int i;
     //strlwr(chaineVerif);
-    mettreMajuscule(chaineVerif);
+    mettreMinuscule(chaineVerif);
 
     if(strcmp(chaineVerif, "") == 0)
     {
-        printf("Veuillez entrer des caractères");
+        printf("Veuillez entrer des caractères ! \n");
         return 1;
     }
     else
@@ -17,7 +17,7 @@ int verification(char chaineVerif[])
         {
             if(chaineVerif[i] < 'a' || chaineVerif[i]> 'z')
             {
-                printf("Erreur le champ saisie comporte des caractères non autorise\n");
+                printf("/!\Erreur le champ saisie comporte des caractères non autorise\n");
                 return 1;
             }
         }
@@ -53,7 +53,7 @@ int verificationPseudo(char chaineVerif[])
 
     if(strlen(chaineVerif) < 3)
     {
-        printf("Veuillez rentrer un pseudo plus long \n");
+        printf("Veuillez rentrer un pseudo correct \n");
         return 1;
     }
     else
@@ -69,29 +69,48 @@ int verificationPseudo(char chaineVerif[])
         return 0;
     }
 }
-int verificationAge(int age)
+int verificationAge(int age) // si l'age est cohérent ou réglementaire
 {
-    if(age < 16)
+    if (age < 0 || age > 120)
+    {
+        printf("Valeur incorrecte !");
         return 1;
+    }
+    else if (age <16 )
+    {
+            printf("L'age recommande pour notre site est de minimum 16 ans ! \n");
+            return 1;
+    }
     else
-        return 0;
+    {
+            return 0;
+    }
+
 }
 
-int verificationInscription(char chemin[])
+int verificationInscription(char chemin[]) // si le pseudo est disponible ou non
 {
     FILE *fichier;
     fichier = fopen(chemin, "r");
 
     if (fichier == NULL)
+    {
         return 0;
+    }
     else
-
+    {
+        printf(" Desole, ce pseudo deja utilise !");
         return 1;
+    }
+
+
 
 }
 
-void mettreMajuscule(char chaine[])
+void mettreMinuscule(char chaine[])
 {
-    for(int i=0;i<strlen(chaine);i++)
+    int i;
+    for(i=0;i<strlen(chaine);i++)
         chaine[i]=tolower(chaine[i]);
 }
+
