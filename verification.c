@@ -17,7 +17,7 @@ int verification(char chaineVerif[])
         {
             if(chaineVerif[i] < 'a' || chaineVerif[i]> 'z')
             {
-                printf("/!\Erreur le champ saisie comporte des caractères non autorise\n");
+                printf("/!\\Erreur le champ saisie comporte des caractères non autorise\n");
                 return 1;
             }
         }

@@ -5,8 +5,8 @@
 
 typedef struct identifiant
 {
-    char prenom[MAX];
     char nom[MAX];
+    char prenom[MAX];
     char MDP[MAX];
     int age;
     char pseudo[MAX];
@@ -14,9 +14,12 @@ typedef struct identifiant
 
 typedef struct produit
 {
-    int prix;
+    float prix;
     char nom[MAX];
     char reference[MAX];
+    char categorie[MAX];
+    int quantite;
+    char vendeur[MAX];
 } produit;
 
 #endif

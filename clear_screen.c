@@ -13,11 +13,3 @@ void clear_screen()
         #endif
     #endif
 }
-
-void clean_stdin(void)
-{
-    int c; // beau gosse
-    do {
-        c = getchar();
-    } while (c != '\n' && c != EOF);
-}
