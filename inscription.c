@@ -1,12 +1,11 @@
 #include "inscription.h"
 
-
 void inscription(identifiant *IDPersonneConnecte)
 {
     int i;
     FILE* fichier = NULL;
     char chemin[50] = "utilisateurs/", confMDP[MAX];
-    clean_stdin();
+    fflush(stdin);
     // aquisition
     printf("\t\t Veuilliez vous inscrire\n\n");
 
@@ -36,7 +35,7 @@ void inscription(identifiant *IDPersonneConnecte)
         printf("\nEntrer votre age : ");
         scanf("%i", &IDPersonneConnecte->age);
     }while(verificationAge(IDPersonneConnecte->age) == 1);
-    clean_stdin();
+    fflush(stdin);
 
     do//mdp
     {
@@ -78,6 +77,6 @@ void inscription(identifiant *IDPersonneConnecte)
     }
 
         clear_screen();
-        clean_stdin();
+        fflush(stdin);
 }
 

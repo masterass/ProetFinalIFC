@@ -26,5 +26,4 @@ int recherche(char chaineVerif[], char chemin[],char caractereRecherche)
     }
     else
         return 1;
-
 }
