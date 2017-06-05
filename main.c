@@ -14,12 +14,12 @@ int main()
 {
     // déclaration variables
     int choix;
-    identifiant IDPersonneConnecte = {"","",""};
+    identifiant IDPersonneConnecte = {"","","",0,""};
     do
     {
         choix = 0;
 
-        while(choix < 1 || choix > 4)
+        while(choix < 1 || choix > 5)
         {
             printf("\n");
             printf("%s 000     00  000000000000000000000000000000000000000000000000000000\n",calibrage);
@@ -38,10 +38,11 @@ int main()
             printf("1) Acceder au catalogue\n");
             printf("2) S'identifier\n");
             printf("3) S'inscrire\n");
-            printf("4) Quitter\n");
+            printf("4) Se deconnecter\n");
+            printf("5) Quitter\n");
             printf("\nChoix : ");
             scanf("%i",&choix);
-            clean_stdin();
+            fflush(stdin);
             clear_screen();
         }
 
@@ -55,12 +56,14 @@ int main()
                 break;
             case 3 : inscription(&IDPersonneConnecte);
                 break;
-            case 4 : ;
+            case 4 : deconnection(&IDPersonneConnecte);
+                break;
+            case 5 : ;
                 break;
             default : printf("Erreur system");
         }
 
-    }while(choix != 4);
+    }while(choix != 5);
 
     return 0;
 }
