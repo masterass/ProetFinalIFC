@@ -36,10 +36,11 @@ int main()
 
             printf("\t\t%sBONJOUR ET BIENVENUE SUR UTzone ! \n\n Veuillez choisir un des quatre choix indique ci-dessous :\n\n",calibrage);
             printf("1) Acceder au catalogue\n");
-            printf("2) S'identifier\n");
-            printf("3) S'inscrire\n");
-            printf("4) Se deconnecter\n");
-            printf("5) Quitter\n");
+            printf("2) Mon espace personnel\n");
+            printf("3) S'identifier\n");
+            printf("4) S'inscrire\n");
+            printf("5) Se deconnecter\n");
+            printf("6) Quitter\n");
             printf("\nChoix : ");
             scanf("%i",&choix);
             fflush(stdin);
@@ -52,13 +53,15 @@ int main()
         {
             case 1 : afficherMenuCatalogue(&IDPersonneConnecte);
                 break;
-            case 2 : connection(&IDPersonneConnecte);
+            case 2 :
                 break;
-            case 3 : inscription(&IDPersonneConnecte);
+            case 3 : connection(&IDPersonneConnecte);
                 break;
-            case 4 : deconnection(&IDPersonneConnecte);
+            case 4 : inscription(&IDPersonneConnecte);
                 break;
-            case 5 : ;
+            case 5 : deconnection(&IDPersonneConnecte);
+                break;
+            case 6 : ;
                 break;
             default : printf("Erreur system");
         }

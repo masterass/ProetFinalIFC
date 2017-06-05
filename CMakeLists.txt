@@ -12,7 +12,9 @@ set(SOURCE_FILES
         verification.h
         recherche.c
         recherche.h
+        espaceperso.c
+        espaceperso.h
         main.c
-        structure.h clear_screen.h clear_screen.c catalogue.h catalogue.c "tri.c" "tri.h" recherche.c recherche.h)
+        structure.h clear_screen.h clear_screen.c catalogue.h catalogue.c "tri.c" "tri.h" recherche.c recherche.h espaceperso.c espaceperso.h)
 
 add_executable(Projet_connection ${SOURCE_FILES} clear_screen.c catalogue.h catalogue.c "tri.c" "tri.h" recherche.c recherche.h)

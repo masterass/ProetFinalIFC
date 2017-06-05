@@ -28,7 +28,7 @@ void connection(identifiant *IDPersonneConnecte)
                 printf("\t\t\tConnexion reussie ! ");
             else
                 printf("\t\t\tPseudo ou mot de passe incorrecte");
-        } while (strcmp(verif, IDPersonneConnecte->MDP) == 1);
+        } while (strcmp(verif, IDPersonneConnecte->MDP) != 0);
     }
     else
         printf("\t\t\tVous etes deja connecte");
@@ -43,6 +43,7 @@ void deconnection(identifiant *IDPersonneConnecte)
     strcpy(IDPersonneConnecte->pseudo,"");
     IDPersonneConnecte->age = 0;
 }
+
 
 int estConnecte(identifiant *IDPersonneConnecte)
 {
