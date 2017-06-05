@@ -1,8 +1,12 @@
 //
 // Created by antoi on 05/06/2017.
 //
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-#ifndef PROJET_CONNECTION_ESPACEPERSO_H
-#define PROJET_CONNECTION_ESPACEPERSO_H
+#include "structure.h"
+#include "clear_screen.h"
+#include "recherche.h"
 
-#endif //PROJET_CONNECTION_ESPACEPERSO_H
+void espaceperso(identifiant *IDPersonneConnecte);

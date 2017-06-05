@@ -50,7 +50,7 @@ void inscription(identifiant *IDPersonneConnecte)
         printf("\nErreur de confirmation mot de passe\n");
          do
         {
-            printf("Mot de passe : (8 caract�res minimums) ");
+            printf("Mot de passe : (8 caracteres minimums) ");
             gets(IDPersonneConnecte->MDP);
         }while(verificationMDP(IDPersonneConnecte->MDP) == 1);
         printf("Confirmer votre mot de passe : ");
@@ -64,9 +64,9 @@ void inscription(identifiant *IDPersonneConnecte)
     if (i == 1)
     {
         fichier = fopen(chemin, "w");
-        fputs(IDPersonneConnecte->prenom , fichier);
+        fprintf(fichier, "@%s", IDPersonneConnecte->prenom);
         fputs("\n", fichier);
-        fputs(IDPersonneConnecte->nom, fichier);
+        fprintf(fichier, "$%s", IDPersonneConnecte->nom);
         fputs("\n", fichier);
         fprintf(fichier, "&%s", IDPersonneConnecte->MDP);
         fputs("\n", fichier);

@@ -6,6 +6,7 @@
 #include "inscription.h"
 #include "catalogue.h"
 #include "clear_screen.h"
+#include "espaceperso.h"
 
 #define MAX 30
 #define calibrage "     "
@@ -53,7 +54,7 @@ int main()
         {
             case 1 : afficherMenuCatalogue(&IDPersonneConnecte);
                 break;
-            case 2 :
+            case 2 : espaceperso(&IDPersonneConnecte);
                 break;
             case 3 : connection(&IDPersonneConnecte);
                 break;
