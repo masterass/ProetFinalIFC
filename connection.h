@@ -8,4 +8,5 @@
 #include "recherche.h"
 
 void connection(identifiant *IDPersonneConnecte);
-void clean_stdin();
+void deconnection(identifiant *IDPersonneConnecte);
+int estConnecte(identifiant *IDPersonneConnecte);

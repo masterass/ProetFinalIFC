@@ -2,7 +2,8 @@
 
 void connection(identifiant *IDPersonneConnecte)
 {
-    if(strcmp(IDPersonneConnecte->pseudo, "") == 0) {
+    if(estConnecte(IDPersonneConnecte) == 0)
+    {
         strcpy(IDPersonneConnecte->pseudo, "");
         strcpy(IDPersonneConnecte->MDP, "");
         char verif[MAX];
@@ -34,3 +35,19 @@ void connection(identifiant *IDPersonneConnecte)
     printf("\n\n");
 }
 
+void deconnection(identifiant *IDPersonneConnecte)
+{
+    strcpy(IDPersonneConnecte->nom,"");
+    strcpy(IDPersonneConnecte->prenom,"");
+    strcpy(IDPersonneConnecte->MDP,"");
+    strcpy(IDPersonneConnecte->pseudo,"");
+    IDPersonneConnecte->age = 0;
+}
+
+int estConnecte(identifiant *IDPersonneConnecte)
+{
+    if(strcmp(IDPersonneConnecte->pseudo, "") == 0 && strcmp(IDPersonneConnecte->MDP, "") == 0)
+        return 0;
+    else
+        return 1;
+}
