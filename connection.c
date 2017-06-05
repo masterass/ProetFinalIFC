@@ -22,7 +22,7 @@ void connection(identifiant *IDPersonneConnecte)
             } while (strcmp(IDPersonneConnecte->pseudo, "") == 0 || strcmp(IDPersonneConnecte->MDP, "") == 0);
 
             strcat(chemin, IDPersonneConnecte->pseudo);// concaténation afin d'obtenir le bon chemin relatif
-            recherche(verif, chemin, '&');
+            rechercheCaractere(verif, chemin, '&');
             clear_screen();
             if (strcmp(verif, IDPersonneConnecte->MDP) == 0)
                 printf("\t\t\tConnexion reussie ! ");

@@ -23,10 +23,11 @@ void ajouterArticle(identifiant *IDPersonneConnecte)
     clear_screen();
     if(estConnecte(IDPersonneConnecte) == 0)
         printf("Veuillez d'abord vous connecter");
-    else
-    {
+    else {
         produit produit1;
-        fflush(stdin);
+        int confirmation;
+
+        /*fflush(stdin);
         do {
             printf("Veuillez entrer le nom de l'article : ");
             scanf("%s", produit1.nom);
@@ -46,9 +47,21 @@ void ajouterArticle(identifiant *IDPersonneConnecte)
             printf("Veuillez entrer la quantite d'article a vendre : ");
             scanf("%i", &produit1.quantite);
         }while (produit1.quantite <= 0);
-        strcpy(produit1.vendeur,IDPersonneConnecte->pseudo);
+        strcpy(produit1.vendeur,IDPersonneConnecte->pseudo);*/
+        fflush(stdin);
+        do {
+            printf("Voulez vous confirmer 1: oui 0: non ? \n");
+            scanf("%i", &confirmation);
+        }while (confirmation != 0 && confirmation != 1);
+
+        if(confirmation == 1)
+        {
+            char refMax;
+            rechercheChaine(refMax,"catalogue","#R");
+            printf("%s", refMax);
+        }
+        clear_screen();
     }
-    clear_screen();
     fflush(stdin);
 }
 
