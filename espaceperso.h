@@ -10,5 +10,5 @@
 #include "clear_screen.h"
 #include "recherche.h"
 
-
+void color(int,int);
 void espaceperso(identifiant *IDPersonneConnecte);

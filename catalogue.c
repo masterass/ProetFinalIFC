@@ -77,6 +77,16 @@ void ajouterArticle(identifiant *IDPersonneConnecte)
                     produit1.prix,produit1.categorie,produit1.quantite,produit1.vendeur);
             fclose(fichier);
         }
+
+        FILE *fichier1 = NULL;
+        char chemin[MAX] = "utilisateurs/";
+        strcat(chemin, IDPersonneConnecte->pseudo);
+        fichier1 = fopen(chemin, "a");
+        if (fichier1 != NULL){
+            fprintf(fichier1,"\n#R%i #N%s #P%1.2f #C%i #Q%i #V%s\n\n",produit1.reference,produit1.nom,
+                    produit1.prix,produit1.categorie,produit1.quantite,produit1.vendeur);
+            fclose(fichier);
+        }
     }
     clear_screen();
 }
