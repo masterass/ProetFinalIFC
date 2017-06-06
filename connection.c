@@ -13,7 +13,7 @@ void connection(identifiant *IDPersonneConnecte)
         do {
             strcpy(chemin, "utilisateurs/");// obiger car si on se tromper une fois le chemin prend le nom du pseudo qui est deja utiliser et celui qui l'est pas
             do {
-                printf("\nVeuilliez vous connecter\n\n");
+                printf("\t\t\tVEUILLEZ VOUS CONNECTER\n\n");
                 printf("\nPseudo : ");
                 gets(IDPersonneConnecte->pseudo);
                 printf("\nMot de passe : ");
@@ -26,7 +26,7 @@ void connection(identifiant *IDPersonneConnecte)
             if (strcmp(verif, IDPersonneConnecte->MDP) == 0)
                 printf("\t\t\tConnexion reussie ! ");
             else
-                printf("\t\t\tPseudo ou mot de passe incorrecte");
+                printf("\t\t\tPseudo ou mot de passe incorrecte\n");
         } while (strcmp(verif, IDPersonneConnecte->MDP) != 0);
     }
     else
@@ -42,7 +42,6 @@ void deconnection(identifiant *IDPersonneConnecte)
     strcpy(IDPersonneConnecte->pseudo,"");
     IDPersonneConnecte->age = 0;
 }
-
 
 int estConnecte(identifiant *IDPersonneConnecte)
 {
