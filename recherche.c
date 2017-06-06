@@ -21,7 +21,7 @@ int rechercheCaractere(char chaineVerif[], char chemin[], char caractereRecherch
                 chaineVerif[strlen(chaineVerif)-1]='\0';
             }
         }
-        printf("%s\n",chaineVerif);
+        //printf("%s\n",chaineVerif);
         fclose(fichier);
     }
     else

@@ -43,6 +43,7 @@ void deconnection(identifiant *IDPersonneConnecte)
     IDPersonneConnecte->age = 0;
 }
 
+
 int estConnecte(identifiant *IDPersonneConnecte)
 {
     if(strcmp(IDPersonneConnecte->pseudo, "") == 0 && strcmp(IDPersonneConnecte->MDP, "") == 0)
