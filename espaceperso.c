@@ -17,6 +17,21 @@ void espaceperso(identifiant *IDPersonneConnecte)
 
     fichier = fopen(chemin, "r");
 
+if (strcmp(IDPersonneConnecte->pseudo, "")==0)
+{
+    color(1,0);
+    printf("\t\t\tVeuillez vous connecter pour acceder a votre espace\n\n");
+}
+else
+{
+    printf("\t\t\t MON ESPACE PERSONNEL");
+    rechercheCaractere(verif, chemin, '@');
+    printf("\nPrenom : ");
+    printf("%s", verif);
+    printf("    Nom : ");
+    rechercheCaractere(verif,chemin,'$');
+    printf("%s", verif);
+}
 
     if (strcmp(IDPersonneConnecte->pseudo, "")==0)
     {

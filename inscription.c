@@ -40,6 +40,7 @@ void inscription(identifiant *IDPersonneConnecte)
 
     do//mdp
     {
+        fflush(stdin);
         printf("\nMot de passe : (8 caracteres minimums) ");
         gets(IDPersonneConnecte->MDP);
     }while(verificationMDP(IDPersonneConnecte->MDP) == 1);
@@ -60,7 +61,7 @@ void inscription(identifiant *IDPersonneConnecte)
     do {
         printf("Voulez vous confirmer 1: oui 0: non ? \n");
         scanf("%i", &confirmation);
-    }while (confirmation =! 0 && confirmation != 1);
+    }while (confirmation != 0 && confirmation != 1);
 
 
     if (confirmation == 1)
