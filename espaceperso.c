@@ -3,6 +3,7 @@
 //
 
 #include "espaceperso.h"
+#include "facture.h"
 
 void color(int t, int f)
 {
