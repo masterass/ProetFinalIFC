@@ -64,11 +64,12 @@ void ajouterArticle(identifiant *IDPersonneConnecte)
     if(confirmation == 1)
     {
         char refMax[MAX];
-        rechercheChaine(refMax,"catalogue","#R");
+        rechercheMaxChaine(refMax, "catalogue", "#R");
         if (strlen(refMax) == 0)
             strcpy(refMax,"1");
         else{
             produit1.reference = charToInt(refMax);
+            produit1.reference++;
         }
         FILE *fichier = NULL;
         fichier = fopen("catalogue", "a");
