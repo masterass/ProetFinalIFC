@@ -32,6 +32,7 @@ int rechercheChaine(char chaineVerif[], char chemin[], char chaineRecherche[])
 {
     char ligne[MAX], TEMP[MAX];
     FILE *fichier =NULL;
+    int i=0;
 
     fichier = fopen(chemin, "r");
 
@@ -40,16 +41,17 @@ int rechercheChaine(char chaineVerif[], char chemin[], char chaineRecherche[])
         while(fgets(ligne,MAX,fichier)!= NULL && strcmp(TEMP, chaineRecherche)!=0)
         {
             strncpy(TEMP,ligne,strlen(chaineRecherche));
+            TEMP[strlen(chaineRecherche)] = '\0';
             if (strcmp(TEMP,chaineRecherche) == 0)
             {
                 strcpy(chaineVerif, "");
-                int i;
-                for(i = strlen(chaineRecherche);i<strlen(ligne);i++)
-                    chaineVerif[i-1] = ligne[i];
-                chaineVerif[strlen(chaineVerif)-1]='\0';
+                for(i = 0;i< (strlen(ligne)-strlen(chaineRecherche));i++)
+                    chaineVerif[i] = ligne[i+strlen(chaineRecherche)];
+                chaineVerif[i-1]='\0';
             }
         }
-        printf("%s\n",chaineVerif);
+        if(i==0)
+            chaineVerif[i]='\0';
         fclose(fichier);
     }
     else
