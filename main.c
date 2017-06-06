@@ -67,7 +67,7 @@ int main()
             default : printf("Erreur system");
         }
 
-    }while(choix != 6);
+    }while(choix != 5);
 
     return 0;
 }
