@@ -40,6 +40,7 @@ void inscription(identifiant *IDPersonneConnecte)
 
     do//mdp
     {
+        fflush(stdin);
         printf("\nMot de passe : (8 caracteres minimums) ");
         gets(IDPersonneConnecte->MDP);
     }while(verificationMDP(IDPersonneConnecte->MDP) == 1);
