@@ -4,6 +4,13 @@
 
 #include "espaceperso.h"
 
+void color(int t, int f)
+{
+    HANDLE H = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(H, f*16+t);
+}
+
+
 void espaceperso(identifiant *IDPersonneConnecte)
 {
     char verif[MAX];
@@ -12,8 +19,11 @@ void espaceperso(identifiant *IDPersonneConnecte)
     strcat(chemin, IDPersonneConnecte->pseudo);
     FILE *fichier;
     fichier = fopen(chemin, "r");
+
+
 if (strcmp(IDPersonneConnecte->pseudo, "")==0)
 {
+    color(1,0);
     printf("\t\t\tVeuillez vous connecter pour acceder a votre espace\n\n");
 }
 else
