@@ -11,8 +11,7 @@ void connection(identifiant *IDPersonneConnecte)
         char chemin[50] = "utilisateurs/";
 
         do {
-            strcpy(chemin,
-                   "utilisateurs/");// obiger car si on se tromper une fois le chemin prend le nom du pseudo qui est deja utiliser et celui qui l'est pas
+            strcpy(chemin, "utilisateurs/");// obiger car si on se tromper une fois le chemin prend le nom du pseudo qui est deja utiliser et celui qui l'est pas
             do {
                 printf("\nVeuilliez vous connecter\n\n");
                 printf("\nPseudo : ");
@@ -22,13 +21,13 @@ void connection(identifiant *IDPersonneConnecte)
             } while (strcmp(IDPersonneConnecte->pseudo, "") == 0 || strcmp(IDPersonneConnecte->MDP, "") == 0);
 
             strcat(chemin, IDPersonneConnecte->pseudo);// concaténation afin d'obtenir le bon chemin relatif
-            recherche(verif, chemin, '&');
+            rechercheCaractere(verif, chemin, '&');
             clear_screen();
             if (strcmp(verif, IDPersonneConnecte->MDP) == 0)
                 printf("\t\t\tConnexion reussie ! ");
             else
                 printf("\t\t\tPseudo ou mot de passe incorrecte");
-        } while (strcmp(verif, IDPersonneConnecte->MDP) == 1);
+        } while (strcmp(verif, IDPersonneConnecte->MDP) != 0);
     }
     else
         printf("\t\t\tVous etes deja connecte");
@@ -43,6 +42,7 @@ void deconnection(identifiant *IDPersonneConnecte)
     strcpy(IDPersonneConnecte->pseudo,"");
     IDPersonneConnecte->age = 0;
 }
+
 
 int estConnecte(identifiant *IDPersonneConnecte)
 {
