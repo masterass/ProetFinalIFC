@@ -12,11 +12,9 @@ void afficherMenuCatalogue(identifiant *IDPersonneConnecte)
         fflush(stdin);
         scanf("%i", &choix);
         switch (choix) {
-            case 1:
-                afficherCatalogue(IDPersonneConnecte);
+            case 1: afficherCatalogue(IDPersonneConnecte);
                 break;
-            case 2:
-                ajouterArticle(IDPersonneConnecte);
+            case 2: ajouterArticle(IDPersonneConnecte);
                 break;
             default :
                 printf("Erreur system");
@@ -64,16 +62,30 @@ void ajouterArticle(identifiant *IDPersonneConnecte)
     if(confirmation == 1)
     {
         char refMax[MAX];
-        rechercheChaine(refMax,"catalogue","#R");
+        int i=0;
+        rechercheCaractere(refMax, "catalogue", '#');
         if (strlen(refMax) == 0)
-            strcpy(refMax,"1");
+            produit1.reference =1;
         else{
+            for(i=0;refMax[i]!=' ';i++){}
+            refMax[i] = '\0';
             produit1.reference = charToInt(refMax);
+            produit1.reference++;
         }
         FILE *fichier = NULL;
         fichier = fopen("catalogue", "a");
         if (fichier != NULL){
-            fprintf(fichier,"#R%i\n#N%s\n#P%1.2f\n#C%i\n#Q%i\n#V%s\n\n",produit1.reference,produit1.nom,
+            fprintf(fichier,"#%i %s %1.2f %i %i %s\n",produit1.reference,produit1.nom,
+                    produit1.prix,produit1.categorie,produit1.quantite,produit1.vendeur);
+            fclose(fichier);
+        }
+
+        FILE *fichier1 = NULL;
+        char chemin[MAX] = "utilisateurs/";
+        strcat(chemin, IDPersonneConnecte->pseudo);
+        fichier1 = fopen(chemin, "a");
+        if (fichier1 != NULL){
+            fprintf(fichier1,"#%i %s %1.2f %i %i %s\n",produit1.reference,produit1.nom,
                     produit1.prix,produit1.categorie,produit1.quantite,produit1.vendeur);
             fclose(fichier);
         }

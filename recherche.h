@@ -5,7 +5,8 @@
 
 #include "structure.h"
 #include "clear_screen.h"
+#include "conversion.h"
 
 int rechercheCaractere(char chaineVerif[], char chemin[], char caractereRecherche);
-int rechercheChaine(char chaineVerif[], char chemin[], char chaineRecherche[]);
+//int rechercheMaxChaine(char *chaineVerif, char *chemin, char *chaineRecherche);
 

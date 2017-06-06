@@ -19,8 +19,8 @@ int main()
     do
     {
         choix = 0;
-
-        while(choix < 1 || choix > 5)
+        color(7,0);
+        while(choix < 1 || choix > 6)
         {
             printf("\n");
             printf("%s 000     00  000000000000000000000000000000000000000000000000000000\n",calibrage);
@@ -67,7 +67,7 @@ int main()
             default : printf("Erreur system");
         }
 
-    }while(choix != 5);
+    }while(choix != 6);
 
     return 0;
 }
