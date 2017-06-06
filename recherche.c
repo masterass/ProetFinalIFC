@@ -2,7 +2,7 @@
 
 int rechercheCaractere(char chaineVerif[], char chemin[], char caractereRecherche)
 {
-    char ligne[MAX], TEMP;
+    char ligne[MAX], TEMP,i;
 
     FILE *fichier =NULL;
     fichier = fopen(chemin, "r");
@@ -28,7 +28,7 @@ int rechercheCaractere(char chaineVerif[], char chemin[], char caractereRecherch
         return 1;
 }
 
-int rechercheChaine(char chaineVerif[], char chemin[], char chaineRecherche[])
+int rechercheMaxChaine(char *chaineVerif, char *chemin, char *chaineRecherche)
 {
     char ligne[MAX], TEMP[MAX];
     FILE *fichier =NULL;
@@ -38,7 +38,7 @@ int rechercheChaine(char chaineVerif[], char chemin[], char chaineRecherche[])
 
     if (fichier != NULL)
     {
-        while(fgets(ligne,MAX,fichier)!= NULL && strcmp(TEMP, chaineRecherche)!=0)
+        while(fgets(ligne,MAX,fichier)!= NULL && strcmp(TEMP, chaineRecherche)!=0) //tan que il existe une ligne et que TEMP == chaine recherché
         {
             strncpy(TEMP,ligne,strlen(chaineRecherche));
             TEMP[strlen(chaineRecherche)] = '\0';
