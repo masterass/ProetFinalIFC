@@ -74,6 +74,7 @@ void inscription(identifiant *IDPersonneConnecte)
         fprintf(fichier, "&%s", IDPersonneConnecte->MDP);
         fputs("\n", fichier);
         fprintf(fichier,"%i", IDPersonneConnecte->age);
+        fprintf(fichier,"\n\n");
         fclose(fichier);
         printf("Bienvenue");
     }
