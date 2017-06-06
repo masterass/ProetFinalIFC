@@ -8,5 +8,5 @@
 #include "conversion.h"
 
 int rechercheCaractere(char chaineVerif[], char chemin[], char caractereRecherche);
-int rechercheMaxChaine(char *chaineVerif, char *chemin, char *chaineRecherche);
+//int rechercheMaxChaine(char *chaineVerif, char *chemin, char *chaineRecherche);
 
