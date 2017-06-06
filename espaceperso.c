@@ -29,11 +29,11 @@ if (strcmp(IDPersonneConnecte->pseudo, "")==0)
 else
 {
     printf("\t\t\t MON ESPACE PERSONNEL");
-    recherche(verif, chemin, '@');
+    rechercheCaractere(verif, chemin, '@');
     printf("\nPrenom : ");
     printf("%s", verif);
     printf("    Nom : ");
-    recherche(verif,chemin,'$');
+    rechercheCaractere(verif,chemin,'$');
     printf("%s", verif);
 }
 
