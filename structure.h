@@ -16,8 +16,8 @@ typedef struct produit
 {
     float prix;
     char nom[MAX];
-    char reference[MAX];
-    char categorie[MAX];
+    int reference;
+    int categorie;
     int quantite;
     char vendeur[MAX];
 } produit;

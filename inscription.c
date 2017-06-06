@@ -2,7 +2,7 @@
 
 void inscription(identifiant *IDPersonneConnecte)
 {
-    int i;
+    int confirmation;
     FILE* fichier = NULL;
     char chemin[50] = "utilisateurs/", confMDP[MAX];
     fflush(stdin);
@@ -57,12 +57,13 @@ void inscription(identifiant *IDPersonneConnecte)
         printf("Confirmer votre mot de passe : ");
         gets(confMDP);
     }
+    do {
+        printf("Voulez vous confirmer 1: oui 0: non ? \n");
+        scanf("%i", &confirmation);
+    }while (confirmation =! 0 && confirmation != 1);
 
-    printf("Voulez vous confirmer 1: oui 0: non ? \n");
-    scanf("%d", &i );
 
-
-    if (i == 1)
+    if (confirmation == 1)
     {
         fichier = fopen(chemin, "w");
         fprintf(fichier, "@%s", IDPersonneConnecte->prenom);
@@ -74,7 +75,6 @@ void inscription(identifiant *IDPersonneConnecte)
         fprintf(fichier,"%i", IDPersonneConnecte->age);
         fclose(fichier);
         printf("Bienvenue");
-
     }
 
         clear_screen();
