@@ -32,10 +32,11 @@ void inscription(identifiant *IDPersonneConnecte)
 
     do// age
     {
+        fflush(stdin);
         printf("\nEntrer votre age : ");
         scanf("%i", &IDPersonneConnecte->age);
     }while(verificationAge(IDPersonneConnecte->age) == 1);
-    fflush(stdin);
+
 
     do//mdp
     {
