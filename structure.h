@@ -1,7 +1,7 @@
 #ifndef STRUCTURE
 #define STRUCTURE
 
-#define MAX 30
+#define MAX 60
 
 typedef struct identifiant
 {

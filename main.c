@@ -8,7 +8,7 @@
 #include "clear_screen.h"
 #include "espaceperso.h"
 
-#define MAX 30
+#define MAX 60
 #define calibrage "     "
 
 int main()
@@ -19,7 +19,7 @@ int main()
     do
     {
         choix = 0;
-        color(7,0);
+        //color(7,0);
         while(choix < 1 || choix > 6)
         {
             printf("\n");
