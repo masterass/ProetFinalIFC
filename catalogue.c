@@ -3,7 +3,7 @@
 void afficherMenuCatalogue(identifiant *IDPersonneConnecte)
 {
     if(estConnecte(IDPersonneConnecte) == 0)
-        printf("Veuillez d'abord vous connecter");
+        printf("\t\tVeuillez d'abord vous connecter\n\n");
     else {
         int choix;
         printf("\t\t\t CATALOGUE \n");
@@ -27,7 +27,7 @@ void ajouterArticle(identifiant *IDPersonneConnecte)
 {
     produit produit1;
     int confirmation;
-
+    clear_screen();
     fflush(stdin);
     do {
         printf("Veuillez entrer le nom de l'article : ");
@@ -96,10 +96,32 @@ void ajouterArticle(identifiant *IDPersonneConnecte)
 
 void afficherCatalogue(identifiant *IDPersonneConnecte)
 {
-    char recherche[50];
-    int choixTri;
+    char recherche[MAX],refMaxC[MAX];
+    rechercheCaractere(refMaxC,"catalogue",'#');
+    int choixTri,choixCategorie, refMaxI=atoi(refMaxC);
+
+    int i;
+    do{
+        clear_screen();
+        printf("\nVeuillez choisir la categorie de l'article rechercher\n");
+        printf("0) Rechercher dans toutes les categories\n");
+        for(i=1;i<=5;i++) {
+            char chaineCategorie[MAX]="";
+            convCategorie(chaineCategorie,i);
+            printf("%i) %s\n",i,chaineCategorie);
+        }
+        printf("Choix : ");
+        fflush(stdin);
+        scanf("%i",&choixCategorie);
+    }while(choixCategorie<0 || choixCategorie>5);
+
+    produit tabProduit[refMaxI+10];
+    referencementArticle(tabProduit,choixCategorie);
+    clear_screen();
     printf("Que voulez vous rechercher ?\n");
     scanf("%s",recherche);
+    recherchearticle(recherche,tabProduit,refMaxI+10);
+    clear_screen();
     do {
         printf("1) Tri par prix, ordre croissant\n");
         printf("2) Tri par prix, ordre decroissanr\n");
@@ -111,7 +133,7 @@ void afficherCatalogue(identifiant *IDPersonneConnecte)
 
     switch(choixTri)
     {
-        case 1: //triPrix(..., 0)// fonction qui tri ordre croissant
+        case 1: // fonction qui tri ordre croissant
             break;
         case 2 : // fonction qui tri ordre décroissant
             break;

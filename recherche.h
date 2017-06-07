@@ -9,4 +9,4 @@
 
 void rechercheCaractere(char chaineVerif[], char chemin[], char caractereRecherche);
 void referencementArticle(produit tabRetourProduit[], int categorie);
-produit recherchearticle(char NOM[], produit tableau[]);
+produit recherchearticle(char NOM[], produit tableau[],int tailleTab);

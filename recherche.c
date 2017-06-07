@@ -73,17 +73,15 @@ void referencementArticle(produit tabRetourProduit[], int categorie)
     }
 }
 
-produit recherchearticle(char NOM[], produit tableau[])
+produit recherchearticle(char NOM[], produit tableau[],int tailleTab)
 {
-    int i ;
-
-
-    for (i = 0; i < 1000 || (strcmp(NOM, tableau[i].nom)==0) ; i ++)
-    {
-        if ( strcmp(NOM, tableau[i].nom) == 0 )
-            printf("\nNous avons trouvé votre produit");
-        else
-            printf("\nProduit introuvable !");
+    if(strcmp(NOM,"") != 0){
+        int i;
+        for (i = 0; i < tailleTab + 1 || (strcmp(NOM, tableau[i].nom) == 0); i++) {
+            if (strcmp(NOM, tableau[i].nom) == 0)
+                printf("\nNous avons trouvé votre produit");
+            else
+                printf("\nProduit introuvable !");
+        }
     }
-
 }
