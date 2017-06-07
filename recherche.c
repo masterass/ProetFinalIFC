@@ -39,7 +39,7 @@ void referencementArticle(produit tabRetourProduit[], int categorie)
                     char chaineFichier[MAX];
                     for (i = min; ligne[i] != ' '; i++)
                         chaineFichier[i-1]=ligne[i];
-                    tabRetourProduit[j].reference = charToInt(chaineFichier);
+                    tabRetourProduit[j].reference = atoi(chaineFichier);
                     min=i;
 
                     for(i;ligne[i] != ' '; i++)

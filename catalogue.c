@@ -70,7 +70,7 @@ void ajouterArticle(identifiant *IDPersonneConnecte)
         else{
             for(i=0;refMax[i]!=' ';i++){}
             refMax[i] = '\0';
-            produit1.reference = charToInt(refMax);
+            produit1.reference = atoi(refMax);
             produit1.reference++;
         }
         FILE *fichier = NULL;
