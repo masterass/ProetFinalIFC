@@ -105,6 +105,6 @@ void afficherCatalogue(identifiant *IDPersonneConnecte)
         printf("3) Tri par ordre alphabetique\n");
         printf("Choix : ");
         fflush(stdin);
-        scanf("%i", choixTri);
+        scanf("%i", &choixTri);
         } while(choixTri<1 || choixTri>3);
 }
