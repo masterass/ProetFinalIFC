@@ -25,34 +25,50 @@ void rechercheCaractere(char chaineVerif[], char chemin[], char caractereRecherc
 }
 
 void referencementArticle(produit tabRetourProduit[], int categorie)
-{
+    {
     FILE *fichier=NULL;
-    char TEMP, ligne[MAX], categorieTab[5][MAX]={"high-tech", "sport", "maison", "jouet", "auto"};
+    char TEMP, ligne[MAX];
     fichier = fopen("catalogue", "r");
     if(fichier!= NULL) {
-        if (categorie == 0) {
-            int j;
-            for(j=0;fgets(ligne,MAX,fichier)!= NULL;j++)/*&& TEMP != caractereRecherche*/{
-                TEMP = ligne[0];
-                if (TEMP == '#') {
-                    int i, min =1;
-                    char chaineFichier[MAX];
-                    for (i = min; ligne[i] != ' '; i++)
-                        chaineFichier[i-1]=ligne[i];
-                    tabRetourProduit[j].reference = charToInt(chaineFichier);
-                    min=i;
+        int j=0;
+        while(fgets(ligne,MAX,fichier)!= NULL){
+            TEMP = ligne[0];
+            if (TEMP == '#') {
+                int i, min =1;
+                char chaineFichier[MAX];
+                for (i = min; ligne[i] != ' '; i++)
+                    chaineFichier[i-1]=ligne[i];
+                tabRetourProduit[j].reference = atoi(chaineFichier);
+                min=i;
 
-                    for(i;ligne[i] != ' '; i++)
-                        chaineFichier[i-min]=ligne[i];
-                    tabRetourProduit[j].prix = atof(chaineFichier);
-                    min=i;
+                for(i;ligne[i] != ' '; i++)
+                    tabRetourProduit[j].nom[i-min]=ligne[i];
+                tabRetourProduit[j].nom[i-min] = '\0';
+                min=i;
 
-                    for(i;ligne[i] != ' '; i++)
-                        chaineFichier[i-min]=ligne[i];
-                    tabRetourProduit[j].categorie = atof(chaineFichier);
-                    min=i;
-                }
+                for(i;ligne[i] != ' '; i++)
+                    chaineFichier[i-min]=ligne[i];
+                tabRetourProduit[j].prix = atof(chaineFichier);
+                min=i;
+
+                for(i;ligne[i] != ' '; i++)
+                    chaineFichier[i-min]=ligne[i];
+                tabRetourProduit[j].categorie = atoi(chaineFichier);
+                min=i;
+
+                for(i;ligne[i] != ' '; i++)
+                    chaineFichier[i-min]=ligne[i];
+                tabRetourProduit[j].quantite = atoi(chaineFichier);
+                min=i;
+
+                for(i;ligne[i] != ' '; i++)
+                    tabRetourProduit[j].vendeur[i-min]=ligne[i];
+                tabRetourProduit[j].vendeur[i-min]='\0';
+
+                if(tabRetourProduit[j].categorie != categorie && categorie != 0)
+                    j--;
             }
+            j++;
         }
     }
 }
