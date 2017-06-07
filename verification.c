@@ -3,7 +3,7 @@
 int verification(char chaineVerif[])
 {
     int i;
-    //strlwr(chaineVerif);
+
     mettreMinuscule(chaineVerif);
 
     if(strcmp(chaineVerif, "") == 0)
