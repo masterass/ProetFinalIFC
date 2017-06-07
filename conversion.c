@@ -9,6 +9,3 @@ int charToInt(char chaine[]){
     }
     return nombre;
 }
-void intToChar(int nombre,char chaineRetour[]){
-
-}
