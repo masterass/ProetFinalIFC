@@ -4,7 +4,7 @@
 
 #include "structure.h"
 #include "verification.h"
-#include "clear_screen.h"
+#include "clear.h"
 #include "recherche.h"
 
 void connection(identifiant *IDPersonneConnecte);

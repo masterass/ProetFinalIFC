@@ -5,7 +5,7 @@
 #include "connection.h"
 #include "inscription.h"
 #include "catalogue.h"
-#include "clear_screen.h"
+#include "clear.h"
 #include "espaceperso.h"
 
 #define MAX 60
