@@ -12,7 +12,8 @@ void rechercheCaractere(char chaineVerif[], char chemin[], char caractereRecherc
     {
         while(fgets(ligne,MAX,fichier)!= NULL /*&& TEMP != caractereRecherche*/) {
             TEMP = ligne[0];
-            if (TEMP == caractereRecherche) {
+            if (TEMP == caractereRecherche)
+            {
                 strcpy(chaineVerif, "");
                 int i;
                 for(i = 1;i<strlen(ligne);i++)
