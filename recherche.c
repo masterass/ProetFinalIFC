@@ -17,7 +17,10 @@ void rechercheCaractere(char chaineVerif[], char chemin[], char caractereRecherc
                 int i;
                 for(i = 1;i<strlen(ligne);i++)
                     chaineVerif[i-1] = ligne[i];
-                chaineVerif[strlen(chaineVerif)-1]='\0';
+                //if(caractereRecherche == '&')
+                chaineVerif[i-2]='\0';
+                //else
+                //    chaineVerif[strlen(chaineVerif)-1]='\0';
             }
         }
         fclose(fichier);
@@ -36,38 +39,46 @@ void referencementArticle(produit tabRetourProduit[], int categorie)
             if (TEMP == '#') {
                 int i, min =1;
                 char chaineFichier[MAX];
+                strcpy(chaineFichier,"");
                 for (i = min; ligne[i] != ' '; i++)
                     chaineFichier[i-1]=ligne[i];
+                chaineFichier[i-min] = '\0';
                 tabRetourProduit[j].reference = atoi(chaineFichier);
-                min=i;
                 i++;
+                min=i;
 
                 for(i;ligne[i] != ' '; i++)
                     tabRetourProduit[j].nom[i-min]=ligne[i];
-                //tabRetourProduit[j].nom[i-min] = '\0';
-                min=i;
+                chaineFichier[i-min] = '\0';
+                tabRetourProduit[j].nom[i-min] = '\0';
                 i++;
+                min=i;
 
                 for(i;ligne[i] != ' '; i++)
                     chaineFichier[i-min]=ligne[i];
+                chaineFichier[i-min] = '\0';
                 tabRetourProduit[j].prix = atof(chaineFichier);
-                min=i;
                 i++;
+                min=i;
+                strcpy(chaineFichier,"");
 
                 for(i;ligne[i] != ' '; i++)
                     chaineFichier[i-min]=ligne[i];
+                chaineFichier[i-min] = '\0';
                 tabRetourProduit[j].categorie = atoi(chaineFichier);
-                min=i;
                 i++;
+                min=i;
 
                 for(i;ligne[i] != ' '; i++)
                     chaineFichier[i-min]=ligne[i];
+                chaineFichier[i-min] = '\0';
                 tabRetourProduit[j].quantite = atoi(chaineFichier);
-                min=i;
                 i++;
+                min=i;
 
-                for(i;ligne[i] != ' '; i++)
+                for(i;ligne[i] != '\n'; i++)
                     tabRetourProduit[j].vendeur[i-min]=ligne[i];
+                chaineFichier[i-min] = '\0';
                 tabRetourProduit[j].vendeur[i-min]='\0';
                 i++;
 
