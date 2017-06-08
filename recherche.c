@@ -14,22 +14,22 @@ void rechercheCaractere(char chaineVerif[], char chemin[], char caractereRecherc
             TEMP = ligne[0];
             if (TEMP == caractereRecherche)
             {
-                strcpy(chaineVerif, "");
+                //strcpy(chaineVerif, "");
                 int i;
-                for(i = 1;i<strlen(ligne);i++)
+                for(i = 1;i<strlen(ligne) && ligne[i] != ' ';i++)
                     chaineVerif[i-1] = ligne[i];
-                //if(caractereRecherche == '&')
-                chaineVerif[i-2]='\0';
-                //else
-                //    chaineVerif[strlen(chaineVerif)-1]='\0';
+                if(caractereRecherche == '&')
+                    chaineVerif[i-2]='\0';
+                else
+                    chaineVerif[strlen(chaineVerif)]='\0';
             }
         }
         fclose(fichier);
     }
 }
 
-void referencementArticle(produit tabRetourProduit[], int categorie)
-    {
+int referencementArticle(produit tabRetourProduit[], int categorie)
+{
     FILE *fichier=NULL;
     char TEMP, ligne[MAX];
     fichier = fopen("catalogue", "r");
@@ -90,18 +90,28 @@ void referencementArticle(produit tabRetourProduit[], int categorie)
             }
             j++;
         }
+        return j-1;
     }
 }
 
-produit recherchearticle(char NOM[], produit tableau[],int tailleTab)
+produit rechercheArticle(char NOM[], produit tableau[], int tailleTab)
 {
     if(strcmp(NOM,"") != 0){
-        int i;
-        for (i = 0; i < tailleTab + 1 || (strcmp(NOM, tableau[i].nom) == 0); i++) {
-            if (strcmp(NOM, tableau[i].nom) == 0)
-                printf("\nNous avons trouvé votre produit");
-            else
-                printf("\nProduit introuvable !");
+        int i,trouve=0;
+        for (i = 0; i < tailleTab || (strcmp(NOM, tableau[i].nom) == 0); i++) {
+            if (strcmp(NOM, tableau[i].nom) == 0) {
+                printf("\nNous avons trouvé votre produit\n");
+                printf("Le produit est %s\n",tableau[i].nom);
+                trouve = 1;
+                return tableau[i];
+            }
         }
+        if(trouve == 0)
+            printf("Nous n'avons pas trouve votre article");
     }
+}
+
+int rechercheLigneReference(char chemin[], int ref)
+{
+
 }
