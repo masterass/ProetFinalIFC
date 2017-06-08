@@ -69,19 +69,6 @@ int verificationPseudo(char chaineVerif[])
         return 0;
     }
 }
-int verificationAge(int age) // si l'age est cohérent ou réglementaire
-{
-    if (age < 16 || age > 120)
-    {
-        printf("L'age saisie est incorrecte(16 ans minimum)\n");
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
-
-}
 
 int verificationInscription(char chemin[]) // si le pseudo est disponible ou non
 {
