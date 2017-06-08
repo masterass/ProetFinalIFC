@@ -8,5 +8,5 @@
 #include "conversion.h"
 
 void rechercheCaractere(char chaineVerif[], char chemin[], char caractereRecherche);
-//int rechercheMaxChaine(char *chaineVerif, char *chemin, char *chaineRecherche);
-
+void referencementArticle(produit tabRetourProduit[], int categorie);
+produit recherchearticle(char NOM[], produit tableau[],int tailleTab);
