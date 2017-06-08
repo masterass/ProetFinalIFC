@@ -40,30 +40,36 @@ void referencementArticle(produit tabRetourProduit[], int categorie)
                     chaineFichier[i-1]=ligne[i];
                 tabRetourProduit[j].reference = atoi(chaineFichier);
                 min=i;
+                i++;
 
                 for(i;ligne[i] != ' '; i++)
                     tabRetourProduit[j].nom[i-min]=ligne[i];
-                tabRetourProduit[j].nom[i-min] = '\0';
+                //tabRetourProduit[j].nom[i-min] = '\0';
                 min=i;
+                i++;
 
                 for(i;ligne[i] != ' '; i++)
                     chaineFichier[i-min]=ligne[i];
                 tabRetourProduit[j].prix = atof(chaineFichier);
                 min=i;
+                i++;
 
                 for(i;ligne[i] != ' '; i++)
                     chaineFichier[i-min]=ligne[i];
                 tabRetourProduit[j].categorie = atoi(chaineFichier);
                 min=i;
+                i++;
 
                 for(i;ligne[i] != ' '; i++)
                     chaineFichier[i-min]=ligne[i];
                 tabRetourProduit[j].quantite = atoi(chaineFichier);
                 min=i;
+                i++;
 
                 for(i;ligne[i] != ' '; i++)
                     tabRetourProduit[j].vendeur[i-min]=ligne[i];
                 tabRetourProduit[j].vendeur[i-min]='\0';
+                i++;
 
                 if(tabRetourProduit[j].categorie != categorie && categorie != 0)
                     j--;
