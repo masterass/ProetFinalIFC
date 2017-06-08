@@ -7,6 +7,6 @@
 #include "clear_screen.h"
 #include "conversion.h"
 
-int rechercheCaractere(char chaineVerif[], char chemin[], char caractereRecherche);
-//int rechercheMaxChaine(char *chaineVerif, char *chemin, char *chaineRecherche);
-
+void rechercheCaractere(char chaineVerif[], char chemin[], char caractereRecherche);
+void referencementArticle(produit tabRetourProduit[], int categorie);
+produit recherchearticle(char NOM[], produit tableau[],int tailleTab);
