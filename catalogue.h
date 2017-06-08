@@ -6,6 +6,7 @@
 #include "tri.h"
 #include "connection.h"
 #include "conversion.h"
+#include "recherche.h"
 
 #ifndef PROJET_CONNECTION_CATALOGUE_H
 #define PROJET_CONNECTION_CATALOGUE_H
