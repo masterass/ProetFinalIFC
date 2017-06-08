@@ -144,7 +144,8 @@ void afficherCatalogue(identifiant *IDPersonneConnecte)
             printf("%i) %s\n",i+1,tabProduit[i].nom);
     }
     else
-        rechercheArticle(recherche, tabProduit, refMaxI);
+        if(strcmp(rechercheArticle(recherche, tabProduit, refMaxI).nom,"") != 0)
+            printf("Taper 1 pour acheter l'article");
 
     do {
         fflush(stdin);

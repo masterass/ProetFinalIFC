@@ -97,13 +97,17 @@ int referencementArticle(produit tabRetourProduit[], int categorie)
 produit rechercheArticle(char NOM[], produit tableau[], int tailleTab)
 {
     if(strcmp(NOM,"") != 0){
-        int i;
+        int i,trouve=0;
         for (i = 0; i < tailleTab || (strcmp(NOM, tableau[i].nom) == 0); i++) {
-            if (strcmp(NOM, tableau[i].nom) == 0)
-                printf("\nNous avons trouvé votre produit");
-            else
-                printf("\nProduit introuvable !");
+            if (strcmp(NOM, tableau[i].nom) == 0) {
+                printf("\nNous avons trouvé votre produit\n");
+                printf("Le produit est %s\n",tableau[i].nom);
+                trouve = 1;
+                return tableau[i];
+            }
         }
+        if(trouve == 0)
+            printf("Nous n'avons pas trouve votre article");
     }
 }
 
