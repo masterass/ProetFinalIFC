@@ -6,12 +6,18 @@ void afficherMenuCatalogue(identifiant *IDPersonneConnecte)
         printf("\t\tVeuillez d'abord vous connecter\n\n");
     else {
         int choix;
-        printf("\t\t\t CATALOGUE \n");
-        printf("1) Afficher le catalogue\n");
-        printf("2) Ajouter un produit\n\n");
-        printf("Choix : ");
-        fflush(stdin);
-        scanf("%i", &choix);
+        do
+        {
+            clear_screen();
+            printf("\t\t\t CATALOGUE \n");
+            printf("1) Afficher le catalogue\n");
+            printf("2) Ajouter un produit\n");
+            printf("3) Retour\n");
+            printf("Choix : ");
+            fflush(stdin);
+            scanf("%i", &choix);
+        }while(choix != 1 && choix!= 2 && choix != 3);
+
         switch (choix) {
             case 1: afficherCatalogue(IDPersonneConnecte);
                 break;

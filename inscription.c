@@ -30,12 +30,18 @@ void inscription(identifiant *IDPersonneConnecte)
 
     }while(verificationPseudo(IDPersonneConnecte->pseudo)==1 || verificationInscription(chemin) == 1);
 
-    do// age
+
+    fflush(stdin);
+    printf("\nEntrer votre age : ");
+    scanf("%i", &IDPersonneConnecte->age);
+
+    while(IDPersonneConnecte->age < 16 || IDPersonneConnecte->age > 120)
     {
+        printf("L'age saisie est incorrecte(16 ans minimum)\n");
         fflush(stdin);
         printf("\nEntrer votre age : ");
         scanf("%i", &IDPersonneConnecte->age);
-    }while(verificationAge(IDPersonneConnecte->age) == 1);
+    }
 
 
     do//mdp
