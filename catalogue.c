@@ -74,7 +74,7 @@ void ajouterArticle(identifiant *IDPersonneConnecte)
         if (strlen(refMax) == 0)
             produit1.reference =1;
         else{
-            for(i=0;refMax[i]!=' ';i++)
+            for(i=0;refMax[i]!=' ';i++){}
             refMax[i] = '\0';
             produit1.reference = atoi(refMax);
             produit1.reference++;
@@ -104,7 +104,7 @@ void afficherCatalogue(identifiant *IDPersonneConnecte)
 {
     char recherche[MAX],refMaxC[MAX];
     rechercheCaractere(refMaxC,"catalogue",'#');
-    int choixTri,choixCategorie, refMaxI=atoi(refMaxC);
+    int choixTri,choixCategorie, choixAchat, refMaxI=atoi(refMaxC);
 
     int i;
     do{
@@ -121,33 +121,58 @@ void afficherCatalogue(identifiant *IDPersonneConnecte)
         scanf("%i",&choixCategorie);
     }while(choixCategorie<0 || choixCategorie>5);
 
-    produit tabProduit[refMaxI+10];
+    produit tabProduit[refMaxI];
     referencementArticle(tabProduit,choixCategorie);
     clear_screen();
 
-    for(i=0;i<2;i++)
-        printf("%s\n",tabProduit[i].nom);
-    printf("Que voulez vous rechercher ?\n");
-    scanf("%s",recherche);
-    recherchearticle(recherche,tabProduit,refMaxI+10);
-    clear_screen();
-    do {
-        printf("1) Tri par prix, ordre croissant\n");
-        printf("2) Tri par prix, ordre decroissant\n");
-
-        printf("Choix : ");
-        fflush(stdin);
-        scanf("%i", &choixTri);
+    printf("Que voulez vous rechercher ? (afficher toute la categorie)\n");
+    fflush(stdin);
+    gets(recherche);
+    if(strcmp(recherche,"") == 0) //si RECHERCHE est VIDE
+    {
+        do {
+            printf("1) Tri par prix, ordre croissant\n");
+            printf("2) Tri par date d'ajout\n");
+            printf("Choix : ");
+            fflush(stdin);
+            scanf("%i", &choixTri);
         } while(choixTri<1 || choixTri>3);
 
-    switch(choixTri)
-    {
-        case 1: triPrix(tabProduit,0);// fonction qui tri ordre croissant
-            break;
-        case 2 : triPrix(tabProduit,1); // fonction qui tri ordre décroissant
-            break;
-        default: ;
+        switch(choixTri)
+        {
+            case 1: triPrix(tabProduit,refMaxI,0);// fonction qui tri ordre croissant
+                break;
+            case 2 : ; // fonction qui tri ordre décroissant
+                break;
+            default: printf("Erreur system");
+        }
+        for(i=0;i<refMaxI;i++)
+            printf("%i) %s\n",i+1,tabProduit[i].nom);
     }
+    else
+        if(strcmp(rechercheArticle(recherche, tabProduit, refMaxI).nom,"") != 0)
+            printf("Taper 1 pour acheter l'article");
+
+    do {
+        fflush(stdin);
+        printf("Choisissez votre produit (0 retour) : ");
+        scanf("%i", &choixAchat);
+    } while(choixAchat<0 || choixAchat > i+1);
+
+    if(strcmp(IDPersonneConnecte->pseudo,tabProduit[i-1].vendeur))
+        printf("Vous ne pouvez pas acheter un objet que vous possedez deja");
+    else if(choixAchat!=0)
+    {
+        FILE *fichier;
+        fichier = fopen("catalogue","r+");
+        rewind(fichier);
+        int ligne;
+        char test[MAX];
+        for(ligne=1;ligne<choixAchat;ligne++)
+            fgets(test,MAX,fichier);
+
+    }
+    clear_screen();
 
     for(i=0;i<2;i++)
         printf("\n\n%s\n",tabProduit[i].nom);
