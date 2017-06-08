@@ -83,8 +83,10 @@ void referencementArticle(produit tabRetourProduit[], int categorie)
                 tabRetourProduit[j].vendeur[i-min]='\0';
                 i++;
 
-                if(tabRetourProduit[j].categorie != categorie && categorie != 0)
+                if(tabRetourProduit[j].categorie != categorie && categorie != 0) {
+                    clear_produit(tabRetourProduit[j]);
                     j--;
+                }
             }
             j++;
         }

@@ -118,6 +118,9 @@ void afficherCatalogue(identifiant *IDPersonneConnecte)
     produit tabProduit[refMaxI+10];
     referencementArticle(tabProduit,choixCategorie);
     clear_screen();
+
+    for(i=0;i<2;i++)
+        printf("%s\n",tabProduit[i].nom);
     printf("Que voulez vous rechercher ?\n");
     scanf("%s",recherche);
     recherchearticle(recherche,tabProduit,refMaxI+10);
