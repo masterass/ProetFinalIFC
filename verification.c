@@ -73,12 +73,12 @@ int verificationAge(int age) // si l'age est cohérent ou réglementaire
 {
     if (age < 16 || age > 120)
     {
-        printf("L'age recommande pour notre site est de minimum 16 ans ! \n");
+        printf("L'age saisie est incorrecte(16 ans minimum)\n");
         return 1;
     }
     else
     {
-            return 0;
+        return 0;
     }
 
 }

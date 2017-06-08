@@ -12,7 +12,8 @@ void rechercheCaractere(char chaineVerif[], char chemin[], char caractereRecherc
     {
         while(fgets(ligne,MAX,fichier)!= NULL /*&& TEMP != caractereRecherche*/) {
             TEMP = ligne[0];
-            if (TEMP == caractereRecherche) {
+            if (TEMP == caractereRecherche)
+            {
                 strcpy(chaineVerif, "");
                 int i;
                 for(i = 1;i<strlen(ligne);i++)
@@ -82,8 +83,10 @@ void referencementArticle(produit tabRetourProduit[], int categorie)
                 tabRetourProduit[j].vendeur[i-min]='\0';
                 i++;
 
-                if(tabRetourProduit[j].categorie != categorie && categorie != 0)
+                if(tabRetourProduit[j].categorie != categorie && categorie != 0) {
+                    clear_produit(tabRetourProduit[j]);
                     j--;
+                }
             }
             j++;
         }
