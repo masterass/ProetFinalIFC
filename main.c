@@ -5,7 +5,7 @@
 #include "connection.h"
 #include "inscription.h"
 #include "catalogue.h"
-#include "clear_screen.h"
+#include "clear.h"
 #include "espaceperso.h"
 
 #define MAX 60
@@ -19,7 +19,7 @@ int main()
     do
     {
         choix = 0;
-        //color(7,0);
+        color(7,0);
         while(choix < 1 || choix > 6)
         {
             printf("\n");
@@ -42,9 +42,12 @@ int main()
             printf("4) S'inscrire\n");
             printf("5) Se deconnecter\n");
             printf("6) Quitter\n");
+            if(strcmp(IDPersonneConnecte.pseudo,"")!= 0)
+                printf("\nVous etes connecte en tant que : %s\n", IDPersonneConnecte.pseudo);
             printf("\nChoix : ");
             scanf("%i",&choix);
             fflush(stdin);
+
             clear_screen();
         }
 

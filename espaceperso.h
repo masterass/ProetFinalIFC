@@ -7,7 +7,7 @@
 #include <windows.h>
 
 #include "structure.h"
-#include "clear_screen.h"
+#include "clear.h"
 #include "recherche.h"
 
 void color(int,int);

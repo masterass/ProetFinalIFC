@@ -1,7 +1,7 @@
 #include <string.h>
 
 #include "structure.h"
-#include "clear_screen.h"
+#include "clear.h"
 #include "conversion.h"
 
 #ifndef PROJET_CONNECTION_FACTURE_H
