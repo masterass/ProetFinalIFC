@@ -10,5 +10,5 @@
 #include "clear.h"
 #include "recherche.h"
 
-void color(int,int);
+
 void espaceperso(identifiant *IDPersonneConnecte);
