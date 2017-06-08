@@ -124,7 +124,7 @@ void afficherCatalogue(identifiant *IDPersonneConnecte)
     clear_screen();
     do {
         printf("1) Tri par prix, ordre croissant\n");
-        printf("2) Tri par prix, ordre decroissanr\n");
+        printf("2) Tri par prix, ordre decroissant\n");
         printf("3) Tri par ordre alphabetique\n");
         printf("Choix : ");
         fflush(stdin);
