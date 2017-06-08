@@ -1,6 +1,6 @@
 #include "tri.h"
 
-void triPrix(produit tableauProduit[], int choix)
+void triPrix(produit tableauProduit[],int taille, int choix)
 {
     int passage = 0;
     int permutation = 1;
@@ -8,11 +8,11 @@ void triPrix(produit tableauProduit[], int choix)
 
     if (choix == 0)
     {
-        while ( permutation)
+        while (permutation)
         {
             permutation = 0;
             passage++;
-            for (en_cours = 0; en_cours < 20 - passage; en_cours++) {
+            for (en_cours = 0; en_cours < taille - passage; en_cours++) {
                 if (tableauProduit[en_cours].prix > tableauProduit[en_cours + 1].prix) {
                     permutation = 1;
                     // on echange les deux elements
