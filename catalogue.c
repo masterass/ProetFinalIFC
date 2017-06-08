@@ -68,7 +68,7 @@ void ajouterArticle(identifiant *IDPersonneConnecte)
         if (strlen(refMax) == 0)
             produit1.reference =1;
         else{
-            for(i=0;refMax[i]!=' ';i++){}
+            for(i=0;refMax[i]!=' ';i++)
             refMax[i] = '\0';
             produit1.reference = atoi(refMax);
             produit1.reference++;
@@ -125,7 +125,7 @@ void afficherCatalogue(identifiant *IDPersonneConnecte)
     do {
         printf("1) Tri par prix, ordre croissant\n");
         printf("2) Tri par prix, ordre decroissanr\n");
-        printf("3) Tri par ordre alphabetique\n");
+
         printf("Choix : ");
         fflush(stdin);
         scanf("%i", &choixTri);
@@ -136,8 +136,6 @@ void afficherCatalogue(identifiant *IDPersonneConnecte)
         case 1: triPrix(tabProduit,0);// fonction qui tri ordre croissant
             break;
         case 2 : triPrix(tabProduit,1); // fonction qui tri ordre décroissant
-            break;
-        case 3 : // fonction qui tri ordre alphabétique
             break;
         default: ;
     }
