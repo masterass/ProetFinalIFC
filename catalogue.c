@@ -133,12 +133,15 @@ void afficherCatalogue(identifiant *IDPersonneConnecte)
 
     switch(choixTri)
     {
-        case 1: // fonction qui tri ordre croissant
+        case 1: triPrix(tabProduit,0);// fonction qui tri ordre croissant
             break;
-        case 2 : // fonction qui tri ordre décroissant
+        case 2 : triPrix(tabProduit,1); // fonction qui tri ordre décroissant
             break;
         case 3 : // fonction qui tri ordre alphabétique
             break;
         default: ;
     }
+
+    for(i=0;i<2;i++)
+        printf("\n\n%s\n",tabProduit[i].nom);
 }
