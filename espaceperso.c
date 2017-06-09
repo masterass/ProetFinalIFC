@@ -1,65 +1,63 @@
-//
-// Created by antoi on 05/06/2017.
-//
-
 #include "espaceperso.h"
 #include "facture.h"
-
-void color(int t, int f)
-{
-    HANDLE H = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(H, f*16+t);
-}
-
 
 void espaceperso(identifiant *IDPersonneConnecte)
 {
     char verif[MAX];
     int choix = 0;
-    int i = 0;
     FILE *fichier;
 
-    char chemin[50] = "utilisateurs/";
+    char chemin[MAX] = "utilisateurs/";
     strcat(chemin, IDPersonneConnecte->pseudo);
 
-    do
+    if (strcmp(IDPersonneConnecte->pseudo, "")==0)
     {
         clear_screen();
-        if (strcmp(IDPersonneConnecte->pseudo, "")==0)
-        {
-            color(4,7);
-            printf("\t\t\tVeuillez vous connecter pour acceder a votre espace\n\n");
-        }
-        else
-        {
-            printf("\t\t\t MON ESPACE PERSONNEL");
-            rechercheCaractere(verif, chemin, '@');
-            printf("\nPrenom : %s  ", verif);
-            rechercheCaractere(verif,chemin,'$');
-            printf("Nom : %s", verif);
+        printf("\t\t\tVeuillez vous connecter pour acceder a votre espace\n\n");
+    }
+    else
+    {
+        do {
+            do {
+                clear_screen();
+                printf("\t\t\t MON ESPACE PERSONNEL");
+                rechercheCaractere(verif, chemin, '@');
+                printf("\nBonjour, %s  ", verif);
+                rechercheCaractere(verif, chemin, '$');
+                printf("%s", verif);
 
-            printf(("\n\n 1) Consulter mes factures"));
-            printf("\n 2) Gerer mes ventes");
-            printf("\n 3) Retour a l'acceuil\n");
-            scanf("%i", &choix);
+                printf(("\n\n 1) Consulter mes factures"));
+                printf("\n 2) Retour a l'acceuil\n");
+                printf(" Choix : ");
+                scanf("%i", &choix);
 
+            }while(choix<1 || choix>2);
 
-            switch(choix)
-            {
-                case 1 : fichier = fopen(chemin, "r");//affichage des factures
-
+            switch (choix) {
+                case 1 : afficherProduitAchete(IDPersonneConnecte);//affichage des factures
+                    // break;
+                case 2 : ;// quitte la fonction
                     break;
-
-                case 2 : // gestion des achats
-                    break;
-                case 3 : i = 0;// quitte la fonction
-                    break;
-                default: printf("Erreur system");
-
+                default:
+                    printf("Erreur system");
             }
-        }
-    }while ( i == 1);
-
+        }while(choix!=2);
+    }
     clear_screen();
 }
 
+void afficherProduitAchete(identifiant *IDPersonneConnecte){
+    char TEMP[MAX],chemin[MAX] = "utilisateurs/";
+    strcat(chemin, IDPersonneConnecte->pseudo);
+    int i,refMaxI=rechercheCaractere(TEMP,chemin,'%');
+    clear_screen();
+    printf("\t\tFACTURES\n\n");
+    produit tabProduitAchete[refMaxI];
+    referencementArticle(tabProduitAchete,chemin,0,'%');
+    for(i=0;i<refMaxI;i++)
+        printf("%i) %s\t%1.2f euros\t%i achete\tsoit %1.2f euro au total\n ",i+1,tabProduitAchete[i].nom,tabProduitAchete[i].prix,tabProduitAchete[i].quantite,
+               tabProduitAchete[i].quantite*tabProduitAchete[i].prix);
+    fflush(stdin);
+    printf("\nAppuyer sur entree pour continuer !");
+    gets(TEMP);
+}

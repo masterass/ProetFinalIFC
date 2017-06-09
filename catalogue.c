@@ -81,7 +81,7 @@ void ajouterArticle(identifiant *IDPersonneConnecte)
             fclose(fichier);
         }
 
-        FILE *fichier1 = NULL;
+        /*FILE *fichier1 = NULL;
         char chemin[MAX] = "utilisateurs/";
         strcat(chemin, IDPersonneConnecte->pseudo);
         fichier1 = fopen(chemin, "a");
@@ -89,7 +89,7 @@ void ajouterArticle(identifiant *IDPersonneConnecte)
             fprintf(fichier1,"#%i %s %1.2f %i %i %s\n",produit1.reference,produit1.nom,
                     produit1.prix,produit1.categorie,produit1.quantite,produit1.vendeur);
             fclose(fichier);
-        }
+        }*/
     }
     clear_screen();
 }
@@ -116,7 +116,7 @@ void afficherCatalogue(identifiant *IDPersonneConnecte)
         scanf("%i",&choixCategorie);
     }while(choixCategorie<0 || choixCategorie>5);
 
-    refMaxI = referencementArticle(tabProduit,choixCategorie) +1; //+1 car categorie commence a 1
+    refMaxI = referencementArticle(tabProduit,"catalogue",choixCategorie,'#') +1; //+1 car categorie commence a 1
 
     clear_screen();
     printf("Que voulez vous rechercher ? ('ENTRER' ne rien rechercher de particulier)\n");
@@ -185,18 +185,24 @@ void procedureAchat(identifiant *IDPersonneConnecte,produit tabProduit[],int pos
     else{
         tabProduit[positionArticle].quantite = tabProduit[positionArticle].quantite - quantite;
 
-        FILE *fichier;
-        fichier = fopen("catalogue", "w+");
-        if (fichier != NULL) {
+        FILE *catalogue,*utilisateur;
+        char chemin[MAX]="utilisateurs/";
+        strcat(chemin,IDPersonneConnecte->pseudo);
+        catalogue = fopen("catalogue", "w+");
+        utilisateur = fopen(chemin,"a");
+        if (catalogue != NULL && chemin != NULL) {
             clear_screen();
             printf("\t\tVous venez d'acheter %i %s",quantite,tabProduit[positionArticle].nom);
             int j;
             triRef(tabProduit,refMax);
             for(j=0;j<refMax;j++) {
-                fprintf(fichier, "#%i %s %1.2f %i %i %s\n", tabProduit[j].reference, tabProduit[j].nom,
+                fprintf(catalogue, "#%i %s %1.2f %i %i %s\n", tabProduit[j].reference, tabProduit[j].nom,
                         tabProduit[j].prix, tabProduit[j].categorie, tabProduit[j].quantite, tabProduit[j].vendeur);
             }
-            fclose(fichier);
+            fprintf(utilisateur, "%%%i %s %1.2f %i %i %s\n", tabProduit[positionArticle].reference, tabProduit[positionArticle].nom,
+                    tabProduit[positionArticle].prix, tabProduit[positionArticle].categorie, quantite, tabProduit[positionArticle].vendeur);
+            fclose(catalogue);
+            fclose(utilisateur);
         }
     }
 }

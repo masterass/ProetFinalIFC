@@ -1,43 +1,44 @@
 #include "recherche.h"
 
-void rechercheCaractere(char chaineVerif[], char chemin[], char caractereRecherche)
+int rechercheCaractere(char chaineVerif[], char chemin[], char caractereRecherche)
 {
     char ligne[MAX], TEMP;
-
+    int nombreCaractere=0;
     FILE *fichier =NULL;
     fichier = fopen(chemin, "r");
 
     strcpy(chaineVerif, "");
     if (fichier != NULL)
     {
-        while(fgets(ligne,MAX,fichier)!= NULL /*&& TEMP != caractereRecherche*/) {
+        while(fgets(ligne,MAX,fichier)!= NULL) {
             TEMP = ligne[0];
             if (TEMP == caractereRecherche)
             {
-                //strcpy(chaineVerif, "");
                 int i;
                 for(i = 1;i<strlen(ligne) && ligne[i] != ' ';i++)
                     chaineVerif[i-1] = ligne[i];
-                if(caractereRecherche == '&')
+                if(caractereRecherche == '&' || caractereRecherche == '$' || caractereRecherche == '@')
                     chaineVerif[i-2]='\0';
                 else
                     chaineVerif[strlen(chaineVerif)]='\0';
+                nombreCaractere++;
             }
         }
         fclose(fichier);
     }
+    return nombreCaractere;
 }
 
-int referencementArticle(produit tabRetourProduit[], int categorie)
+int referencementArticle(produit tabRetourProduit[],char chemin[], int categorie,char caractereRecherche)
 {
     FILE *fichier=NULL;
     char TEMP, ligne[MAX];
-    fichier = fopen("catalogue", "r");
+    fichier = fopen(chemin, "r");
     if(fichier!= NULL) {
         int j=0;
         while(fgets(ligne,MAX,fichier)!= NULL){
             TEMP = ligne[0];
-            if (TEMP == '#') {
+            if (TEMP == caractereRecherche) {
                 int i, min =1;
                 char chaineFichier[MAX];
                 strcpy(chaineFichier,"");
@@ -87,8 +88,8 @@ int referencementArticle(produit tabRetourProduit[], int categorie)
                     clear_produit(&tabRetourProduit[j]);
                     j--;
                 }
+                j++;
             }
-            j++;
         }
         return j-1;
     }
@@ -113,9 +114,4 @@ int rechercheArticle(char NOM[], produit tableau[], int tailleTab)
     }
     else
         return -1;
-}
-
-int rechercheLigneReference(char chemin[], int ref)
-{
-
 }

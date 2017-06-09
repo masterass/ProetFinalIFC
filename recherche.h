@@ -7,7 +7,6 @@
 #include "clear.h"
 #include "conversion.h"
 
-void rechercheCaractere(char chaineVerif[], char chemin[], char caractereRecherche);
-int referencementArticle(produit tabRetourProduit[], int categorie);
+int rechercheCaractere(char chaineVerif[], char chemin[], char caractereRecherche);
+int referencementArticle(produit tabRetourProduit[],char chemin[], int categorie,char caractereRecherche);
 int rechercheArticle(char NOM[], produit tableau[], int tailleTab);
-int rechercheLigneReference(char chemin[], int ref);
