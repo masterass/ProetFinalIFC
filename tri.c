@@ -1,6 +1,6 @@
 #include "tri.h"
 
-void triPrix(produit tableauProduit[],int taille)
+void triPrix(produit tableauProduit[],int taille)//tres imortant tri a bulle
 {
     int passage = 0;
     int permutation = 1;

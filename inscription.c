@@ -64,7 +64,7 @@ void inscription(identifiant *IDPersonneConnecte)
     }while (confirmation != 0 && confirmation != 1);
 
 
-    if (confirmation == 1)
+    if (confirmation == 1)//ecris dans le fichier apres confirmation
     {
         fichier = fopen(chemin, "w");
         fprintf(fichier, "@%s", IDPersonneConnecte->prenom);

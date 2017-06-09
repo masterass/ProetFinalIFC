@@ -87,15 +87,14 @@ void ajouterArticle(identifiant *IDPersonneConnecte)
 void afficherCatalogue(identifiant *IDPersonneConnecte)
 {
     char recherche[MAX],refMaxC[MAX];
-    int choixTri,choixCategorie, choixAchat, refMaxI=rechercheCaractere(refMaxC,"catalogue",'#'),i;
-
-    produit tabProduit[refMaxI];
-
+    int choixTri,choixCategorie, choixAchat, refMax=rechercheCaractere(refMaxC,"catalogue",'#'),i; //declaration varable
+                                                                                                    //refMax la référence la plus éleve du catalogue
+    produit tabProduit[refMax];                                                                    //tableau de structure de produit de taille maximum
     do{
         clear_screen();
         printf("\nVeuillez choisir la categorie de l'article rechercher\n");
         printf("0) Rechercher dans toutes les categories\n");
-        for(i=1;i<=5;i++) {
+        for(i=1;i<=5;i++) {                                                                         //fonction affichant les catégories
             char chaineCategorie[MAX]="";
             convCategorie(chaineCategorie,i);
             printf("%i) %s\n",i,chaineCategorie);
@@ -105,13 +104,13 @@ void afficherCatalogue(identifiant *IDPersonneConnecte)
         scanf("%i",&choixCategorie);
     }while(choixCategorie<0 || choixCategorie>5);
 
-    refMaxI = referencementArticle(tabProduit,"catalogue",choixCategorie,'#') +1; //+1 car categorie commence a 1
+    refMax = referencementArticle(tabProduit,"catalogue",choixCategorie,'#') +1;                    //+1 car categorie commence a 1
 
     clear_screen();
     printf("Que voulez vous rechercher ? ('ENTRER' ne rien rechercher de particulier)\n");
     fflush(stdin);
     gets(recherche);
-    if(strcmp(recherche,"") == 0) //si RECHERCHE est VIDE
+    if(strcmp(recherche,"") == 0)                                                                   //si RECHERCHE est VIDE
     {
         do {
             printf("1) Tri par prix, ordre croissant\n");
@@ -123,27 +122,27 @@ void afficherCatalogue(identifiant *IDPersonneConnecte)
 
         switch(choixTri)
         {
-            case 1: triPrix(tabProduit,refMaxI);// fonction qui tri ordre croissant
+            case 1: triPrix(tabProduit,refMax);                                                     // fonction qui tri ordre croissant
                 break;
-            case 2 : ; // fonction qui tri ordre date d'ajout
+            case 2 : ;                                                                              // fonction qui tri ordre date d'ajout date d'ajout correspondant au reference
                 break;
             default: printf("Erreur system");
         }
-        for(i=0;i<refMaxI;i++)
+        for(i=0;i<refMax;i++)
             printf("%i) %s\t%1.2f euros\n",i+1,tabProduit[i].nom,tabProduit[i].prix);
 
-        do { //choix prod
+        do {                                                                                        //choix produit
             fflush(stdin);
             printf("Choisissez votre produit (0 retour) : ");
             scanf("%i", &choixAchat);
         } while(choixAchat<0 || choixAchat > i+1);
         clear_screen();
         if(choixAchat!= 0) {
-            procedureAchat(IDPersonneConnecte,tabProduit,choixAchat-1,refMaxI);
+            procedureAchat(IDPersonneConnecte,tabProduit,choixAchat-1,refMax);                      //achat du produit
         }
     }
-    else{
-        int articleRecherche = rechercheArticle(recherche, tabProduit, refMaxI);
+    else{                                                                                           //sinon recherche particulière
+        int articleRecherche = rechercheArticle(recherche, tabProduit, refMax);
         if(articleRecherche != -1){
             do {
                 printf("1) acheter l'article\n");
@@ -153,7 +152,7 @@ void afficherCatalogue(identifiant *IDPersonneConnecte)
                 scanf("%i", &choixAchat);
             } while (choixAchat != 1 && choixAchat != 2);
             if (choixAchat == 1) {
-                procedureAchat(IDPersonneConnecte, tabProduit, articleRecherche, refMaxI);
+                procedureAchat(IDPersonneConnecte, tabProduit, articleRecherche, refMax);
             }
         }
     }
@@ -162,7 +161,7 @@ void afficherCatalogue(identifiant *IDPersonneConnecte)
 void procedureAchat(identifiant *IDPersonneConnecte,produit tabProduit[],int positionArticle, int refMax){
     int quantite;
 
-    do {  // quantite produit
+    do {                                                                                            // quantite produit
         fflush(stdin);
         printf("Combien voulez-vous en acheter? : ");
         scanf("%i", &quantite);
@@ -171,7 +170,7 @@ void procedureAchat(identifiant *IDPersonneConnecte,produit tabProduit[],int pos
         clear_screen();
         printf("\t\tVous ne pouvez pas acheter un objet que vous possedez deja");
     }
-    else{
+    else{                                                                                           //ecriture dans le fichier
         tabProduit[positionArticle].quantite = tabProduit[positionArticle].quantite - quantite;
 
         FILE *catalogue,*utilisateur;
@@ -183,12 +182,12 @@ void procedureAchat(identifiant *IDPersonneConnecte,produit tabProduit[],int pos
             clear_screen();
             printf("\t\tVous venez d'acheter %i %s",quantite,tabProduit[positionArticle].nom);
             int j;
-            triRef(tabProduit,refMax);
+            triRef(tabProduit,refMax);                                                              //On remet le tableau dnas l'ordre des reference
             for(j=0;j<refMax;j++) {
-                fprintf(catalogue, "#%i %s %1.2f %i %i %s\n", tabProduit[j].reference, tabProduit[j].nom,
+                fprintf(catalogue, "#%i %s %1.2f %i %i %s\n", tabProduit[j].reference, tabProduit[j].nom, //on actualise le catalogue
                         tabProduit[j].prix, tabProduit[j].categorie, tabProduit[j].quantite, tabProduit[j].vendeur);
             }
-            fprintf(utilisateur, "%%%i %s %1.2f %i %i %s\n", tabProduit[positionArticle].reference, tabProduit[positionArticle].nom,
+            fprintf(utilisateur, "%%%i %s %1.2f %i %i %s\n", tabProduit[positionArticle].reference, tabProduit[positionArticle].nom, //on actualise le fichier client
                     tabProduit[positionArticle].prix, tabProduit[positionArticle].categorie, quantite, tabProduit[positionArticle].vendeur);
             fclose(catalogue);
             fclose(utilisateur);

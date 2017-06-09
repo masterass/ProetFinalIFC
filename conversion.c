@@ -18,3 +18,10 @@ void convCategorie (char chaine[], int IDCategorie)
         default:;
     }
 }
+        /** Catégorie
+         * 1 high-tech
+         * 2 sport
+         * 3 maison
+         * 4 jouet
+         * 5 auto
+         */

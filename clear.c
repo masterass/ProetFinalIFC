@@ -1,6 +1,6 @@
 #include "clear.h"
 
-void clear_screen()
+void clear_screen() //effacer tous ce qu'il y a afficher suivant l'os utilisé
 {
     #ifdef __WIN32__
         system("cls");
@@ -14,7 +14,7 @@ void clear_screen()
     #endif
 }
 
-void clear_produit(produit *produit1)
+void clear_produit(produit *produit1)  //vider produit
 {
     int i;
     for(i=0;i<MAX;i++) {

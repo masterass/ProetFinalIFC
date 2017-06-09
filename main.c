@@ -1,11 +1,9 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 #include "structure.h"
 #include "connection.h"
 #include "inscription.h"
 #include "catalogue.h"
-#include "clear.h"
 #include "espaceperso.h"
 
 #define MAX 60
@@ -15,7 +13,7 @@ int main()
 {
     // déclaration variables
     int choix;
-    identifiant IDPersonneConnecte = {"","","",0,""};
+    identifiant IDPersonneConnecte = {"","","",0,""}; //initialisation structure identifiant
     do
     {
         choix = 0;
@@ -32,7 +30,7 @@ int main()
             printf("%s 000     00      00     000  0000000 000000  000 0000 000  00000000\n",calibrage);
             printf("%s   00   00       00     00  0000 000  0000  0000 0000 0000  0000  0\n",calibrage);
             printf("%s    00000        00     00       00000    00000   00   0000     000\n",calibrage);
-            printf("%s                        0000000000000000000000000000000000000000000\n\n");
+            printf("%s                        0000000000000000000000000000000000000000000\n\n",calibrage);
 
             printf("\t\t%sBONJOUR ET BIENVENUE SUR UTzone ! \n\n Veuillez choisir un des quatre choix indique ci-dessous :\n\n",calibrage);
             printf("1) Acceder au catalogue\n");
@@ -44,13 +42,12 @@ int main()
             if(strcmp(IDPersonneConnecte.pseudo,"")!= 0)
                 printf("\nVous etes connecte en tant que : %s\n", IDPersonneConnecte.pseudo);
             printf("\nChoix : ");
+            fflush(stdin); // vider le buffer
             scanf("%i",&choix);
-            fflush(stdin);
 
             clear_screen();
         }
 
-        // vider le buffer
         fflush(stdin);
         switch (choix)
         {
@@ -64,7 +61,7 @@ int main()
                 break;
             case 5 : deconnection(&IDPersonneConnecte);
                 break;
-            case 6 : ;
+            case 6 : ; //quiter le programme
                 break;
             default : printf("Erreur system");
         }

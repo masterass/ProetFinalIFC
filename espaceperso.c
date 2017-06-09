@@ -1,7 +1,6 @@
 #include "espaceperso.h"
-#include "facture.h"
 
-void espaceperso(identifiant *IDPersonneConnecte)
+void espaceperso(identifiant *IDPersonneConnecte) //affichage option espace personnel
 {
     char verif[MAX];
     int choix = 0;
@@ -54,7 +53,7 @@ void afficherProduitAchete(identifiant *IDPersonneConnecte){
     printf("\t\tFACTURES\n\n");
     produit tabProduitAchete[refMaxI];
     referencementArticle(tabProduitAchete,chemin,0,'%');
-    for(i=0;i<refMaxI;i++)
+    for(i=0;i<refMaxI;i++) // afficher tous les produit present dans le fichier utilisateur corespondant
         printf("%i) %s\t%1.2f euros\t%i achete\tsoit %1.2f euro au total\n ",i+1,tabProduitAchete[i].nom,tabProduitAchete[i].prix,tabProduitAchete[i].quantite,
                tabProduitAchete[i].quantite*tabProduitAchete[i].prix);
     fflush(stdin);
