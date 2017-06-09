@@ -9,5 +9,5 @@
 
 void rechercheCaractere(char chaineVerif[], char chemin[], char caractereRecherche);
 int referencementArticle(produit tabRetourProduit[], int categorie);
-produit rechercheArticle(char NOM[], produit tableau[], int tailleTab);
+int rechercheArticle(char NOM[], produit tableau[], int tailleTab);
 int rechercheLigneReference(char chemin[], int ref);

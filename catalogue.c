@@ -104,9 +104,10 @@ void afficherCatalogue(identifiant *IDPersonneConnecte)
 {
     char recherche[MAX],refMaxC[MAX];
     rechercheCaractere(refMaxC,"catalogue",'#');
-    int choixTri,choixCategorie, choixAchat, refMaxI=atoi(refMaxC);
+    int choixTri,choixCategorie, choixAchat, refMaxI=atoi(refMaxC),i;
 
-    int i;
+    produit tabProduit[refMaxI];
+
     do{
         clear_screen();
         printf("\nVeuillez choisir la categorie de l'article rechercher\n");
@@ -121,11 +122,10 @@ void afficherCatalogue(identifiant *IDPersonneConnecte)
         scanf("%i",&choixCategorie);
     }while(choixCategorie<0 || choixCategorie>5);
 
-    produit tabProduit[refMaxI];
-    referencementArticle(tabProduit,choixCategorie);
-    clear_screen();
+    refMaxI = referencementArticle(tabProduit,choixCategorie) +1; //+1 car categorie commence a 1
 
-    printf("Que voulez vous rechercher ? (afficher toute la categorie)\n");
+    clear_screen();
+    printf("Que voulez vous rechercher ? ('ENTRER' ne rien rechercher de particulier)\n");
     fflush(stdin);
     gets(recherche);
     if(strcmp(recherche,"") == 0) //si RECHERCHE est VIDE
@@ -140,40 +140,69 @@ void afficherCatalogue(identifiant *IDPersonneConnecte)
 
         switch(choixTri)
         {
-            case 1: triPrix(tabProduit,refMaxI,0);// fonction qui tri ordre croissant
+            case 1: triPrix(tabProduit,refMaxI);// fonction qui tri ordre croissant
                 break;
-            case 2 : ; // fonction qui tri ordre décroissant
+            case 2 : ; // fonction qui tri ordre date d'ajout
                 break;
             default: printf("Erreur system");
         }
         for(i=0;i<refMaxI;i++)
-            printf("%i) %s\n",i+1,tabProduit[i].nom);
-    }
-    else
-        if(strcmp(rechercheArticle(recherche, tabProduit, refMaxI).nom,"") != 0)
-            printf("Taper 1 pour acheter l'article");
+            printf("%i) %s\t%1.2f euros\n",i+1,tabProduit[i].nom,tabProduit[i].prix);
 
-    do {
+        do { //choix prod
+            fflush(stdin);
+            printf("Choisissez votre produit (0 retour) : ");
+            scanf("%i", &choixAchat);
+        } while(choixAchat<0 || choixAchat > i+1);
+        clear_screen();
+        if(choixAchat!= 0) {
+            procedureAchat(IDPersonneConnecte,tabProduit,choixAchat-1,refMaxI);
+        }
+    }
+    else{
+        int articleRecherche = rechercheArticle(recherche, tabProduit, refMaxI);
+        if(articleRecherche != -1){
+            do {
+                printf("1) acheter l'article\n");
+                printf("2) retour au menu\n");
+                printf("Choix : ");
+                fflush(stdin);
+                scanf("%i", &choixAchat);
+            } while (choixAchat != 1 && choixAchat != 2);
+            if (choixAchat == 1) {
+                procedureAchat(IDPersonneConnecte, tabProduit, articleRecherche, refMaxI);
+            }
+        }
+    }
+}
+
+void procedureAchat(identifiant *IDPersonneConnecte,produit tabProduit[],int positionArticle, int refMax){
+    int quantite;
+
+    do {  // quantite produit
         fflush(stdin);
-        printf("Choisissez votre produit (0 retour) : ");
-        scanf("%i", &choixAchat);
-    } while(choixAchat<0 || choixAchat > i+1);
-
-    if(strcmp(IDPersonneConnecte->pseudo,tabProduit[i-1].vendeur))
-        printf("Vous ne pouvez pas acheter un objet que vous possedez deja");
-    else if(choixAchat!=0)
-    {
-        FILE *fichier;
-        fichier = fopen("catalogue","r+");
-        rewind(fichier);
-        int ligne;
-        char test[MAX];
-        for(ligne=1;ligne<choixAchat;ligne++)
-            fgets(test,MAX,fichier);
-
+        printf("Combien voulez-vous en acheter? : ");
+        scanf("%i", &quantite);
+    } while (quantite < 1 || quantite > tabProduit[positionArticle].quantite);
+    if(strcmp(IDPersonneConnecte->pseudo,tabProduit[positionArticle].vendeur) == 0) {
+        clear_screen();
+        printf("\t\tVous ne pouvez pas acheter un objet que vous possedez deja");
     }
-    clear_screen();
+    else{
+        tabProduit[positionArticle].quantite = tabProduit[positionArticle].quantite - quantite;
 
-    for(i=0;i<2;i++)
-        printf("\n\n%s\n",tabProduit[i].nom);
+        FILE *fichier;
+        fichier = fopen("catalogue", "w+");
+        if (fichier != NULL) {
+            clear_screen();
+            printf("\t\tVous venez d'acheter %i %s",quantite,tabProduit[positionArticle].nom);
+            int j;
+            triRef(tabProduit,refMax);
+            for(j=0;j<refMax;j++) {
+                fprintf(fichier, "#%i %s %1.2f %i %i %s\n", tabProduit[j].reference, tabProduit[j].nom,
+                        tabProduit[j].prix, tabProduit[j].categorie, tabProduit[j].quantite, tabProduit[j].vendeur);
+            }
+            fclose(fichier);
+        }
+    }
 }

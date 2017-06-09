@@ -83,8 +83,8 @@ int referencementArticle(produit tabRetourProduit[], int categorie)
                 tabRetourProduit[j].vendeur[i-min]='\0';
                 i++;
 
-                if(tabRetourProduit[j].categorie != categorie && categorie != 0) {
-                    clear_produit(tabRetourProduit[j]);
+                if((tabRetourProduit[j].categorie != categorie && categorie != 0) || tabRetourProduit[j].quantite<1) {
+                    clear_produit(&tabRetourProduit[j]);
                     j--;
                 }
             }
@@ -94,21 +94,25 @@ int referencementArticle(produit tabRetourProduit[], int categorie)
     }
 }
 
-produit rechercheArticle(char NOM[], produit tableau[], int tailleTab)
+int rechercheArticle(char NOM[], produit tableau[], int tailleTab)
 {
     if(strcmp(NOM,"") != 0){
         int i,trouve=0;
         for (i = 0; i < tailleTab || (strcmp(NOM, tableau[i].nom) == 0); i++) {
             if (strcmp(NOM, tableau[i].nom) == 0) {
-                printf("\nNous avons trouvé votre produit\n");
-                printf("Le produit est %s\n",tableau[i].nom);
+                printf("\nNous avons trouve votre produit\n");
+                printf("Le produit est : %s\n",tableau[i].nom);
+                printf("Il coute : %1.2f\n",tableau[i].prix);
+                printf("Il en reste : %i",tableau[i].quantite);
                 trouve = 1;
-                return tableau[i];
+                return i;
             }
         }
         if(trouve == 0)
             printf("Nous n'avons pas trouve votre article");
     }
+    else
+        return -1;
 }
 
 int rechercheLigneReference(char chemin[], int ref)
