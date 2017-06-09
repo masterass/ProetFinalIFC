@@ -14,6 +14,7 @@
 void afficherMenuCatalogue(identifiant *IDPersonneConnecte);
 void ajouterArticle(identifiant *IDPersonneConnecte);
 void afficherCatalogue(identifiant *IDPersonneConnecte);
+void procedureAchat(identifiant *IDPersonneConnecte,produit tabProduit[],int positionArticle,int refMax);
 
 #endif //PROJET_CONNECTION_CATALOGUE_H
 
