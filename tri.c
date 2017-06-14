@@ -6,6 +6,7 @@ void triPrix(produit tableauProduit[],int taille, int choix)
     int permutation = 1;
     int en_cours;
 
+
     if (choix == 0)
     {
         while (permutation)

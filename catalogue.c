@@ -46,7 +46,7 @@ void ajouterArticle(identifiant *IDPersonneConnecte)
         printf("3) Maison\n");
         printf("4) Jouet\n");
         printf("5) Auto\n");
-        printf("Veuillez entrer la categorie de cette article : ");
+        printf("Veuillez entrer la categorie de cet article : ");
         scanf("%i", &produit1.categorie);
     }while (produit1.categorie < 1 || produit1.categorie > 5);
     fflush(stdin);
